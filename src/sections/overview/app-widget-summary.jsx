@@ -20,10 +20,13 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
         py: 5,
         borderRadius: 2,
         ...sx,
+        height: 80, // 수정
+        display: 'flex',        // Flex 컨테이너로 설정
+        alignItems: 'center',   // 수직 정렬
       }}
       {...other}
     >
-      {icon && <Box sx={{ width: 64, height: 64 }}>{icon}</Box>}
+      {icon && <Box sx={{ width: 50, height: 50 }}>{icon}</Box>}
 
       <Stack spacing={0.5}>
         <Typography variant="h4">{fShortenNumber(total)}</Typography>
