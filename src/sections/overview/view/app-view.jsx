@@ -14,7 +14,8 @@ import AppNewsUpdate from '../app-news-update';
 import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
 import AppTrafficBySite from '../app-traffic-by-site';
-// import { Content } from 'antd/es/layout/layout';
+// import { Content } from 'antd/es/layout/layout'; 
+// 수정 file upload 부 수정, dashboard 다 된 뒤에 주석 풀어야 할 듯
 
 
 const { Dragger } = Upload;

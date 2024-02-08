@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 
-export default function UserTableRow({
+export default function UserTableRow({  // 수정
   selected,
   no,
   name,
@@ -52,7 +52,7 @@ export default function UserTableRow({
         <TableCell  align="center">{date}</TableCell>
 
         <TableCell>
-          <Label color={(status ? 'success' : 'error')}>{status ? 'Complete' : 'Incomplete '}</Label>
+          <Label color={(status ? 'success' : 'error')}>{status ? 'Complete' : 'Incomplete '}</Label> 
         </TableCell>
 
         <TableCell align="left">

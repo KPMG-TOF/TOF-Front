@@ -24,7 +24,7 @@ export default function Router() {
         </DashboardLayout>
       ),
       children: [
-        { element: <IndexPage />, index: true }, // 수정 index page 변환
+        { element: <IndexPage />, index: true }, // 수정: index page 변환
         { path: 'user', element: <UserPage /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
