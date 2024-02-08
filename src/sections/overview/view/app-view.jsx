@@ -14,7 +14,8 @@ import AppNewsUpdate from '../app-news-update';
 import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
 import AppTrafficBySite from '../app-traffic-by-site';
-// import { Content } from 'antd/es/layout/layout';
+// import { Content } from 'antd/es/layout/layout'; 
+// 수정 file upload 부 수정, dashboard 다 된 뒤에 주석 풀어야 할 듯
 
 
 const { Dragger } = Upload;
@@ -48,26 +49,26 @@ export default function AppView() {
   };
   
 
-  // useEffect(() => {
+    // useEffect(() => {
+      
+    // },[RFPData])
 
-  // },[RFPData])
+  // const handleRef_analysis = async () => {
+  //   const data = { rfpData };
 
-  const handleRef_analysis = async () => {
-    const data = { rfpData };
-
-    try {
-      const response = await ref_analysis(data);
-      if (response.data.result === "success") {
-        console.log("res: ", response.data.result);
-        setRfpData(response.data);
-        message.success("RFP 분석 성공.");
-      } else {
-        message.warning("RFP 분석 실패. 다시 시도해주세요.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  //   try {
+  //     const response = await ref_analysis(data);
+  //     if (response.data.result === "success") {
+  //       console.log("res: ", response.data.result);
+  //       setRfpData(response.data);
+  //       message.success("RFP 분석 성공.");
+  //     } else {
+  //       message.warning("RFP 분석 실패. 다시 시도해주세요.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
 
   return (
     <Container maxWidth="xl">
@@ -77,7 +78,7 @@ export default function AppView() {
 
       
 
-      {rfpData ? (
+      {/* {rfpData ? ( */}
       <Grid container spacing={3}>
       <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
@@ -175,23 +176,25 @@ export default function AppView() {
           />
         </Grid>
         </Grid>
-      ): (
-          <Grid container spacing={3} style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-          <Grid xs={12} sm={6} md={6}>
-          <Dragger {...props}>
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-text">Click or drag file to this area to upload</p>
-            <p className="ant-upload-hint">
-              Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-              banned files.
-            </p>
-          </Dragger>
-          </Grid>
-          </Grid>
+      {/* // ): (
+           <Grid container spacing={3} style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+           <Grid xs={12} sm={6} md={6}>
+           <Dragger {...props}>
+             <p className="ant-upload-drag-icon">
+               <InboxOutlined />
+             </p>
+             <p className="ant-upload-text">Click or drag file to this area to upload</p>
+             <p className="ant-upload-hint">
+               Support for a single or bulk upload. Strictly prohibited from uploading company data or other
+               banned files.
+             </p>
+           </Dragger>
+
+           <button onClick={handleRef_analysis}>분석하기</button>
+           </Grid>
+           </Grid>
          
-      )}
+       )} */}
 
     </Container>
   );
