@@ -5,11 +5,7 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { fShortenNumber } from 'src/utils/format-number';
-
-// ----------------------------------------------------------------------
-
-export default function AppWidgetSummary({ title, total, icon, color = 'primary', sx, ...other }) {
+export default function AppWidgetSummary({ subject, requirement, icon, color = 'primary', sx, ...other }) {
   return (
     <Card
       component={Stack}
@@ -20,21 +16,18 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
         py: 5,
         borderRadius: 2,
         ...sx,
-        height: 80, // 수정
-        display: 'flex',        // Flex 컨테이너로 설정
-        alignItems: 'center',   // 수직 정렬
       }}
       {...other}
     >
-      {icon && <Box sx={{ width: 50, height: 50 }}>{icon}</Box>}
 
       <Stack spacing={0.5}>
-        <Typography variant="h4">{fShortenNumber(total)}</Typography>
-
-        <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
-          {title}
+        <Typography fontSize="0.8em" sx={{ color: 'text.disabled' }}>
+          {subject}
         </Typography>
+
+        <Typography fontSize="0.9em" fontWeight="bold">{requirement}</Typography>
       </Stack>
+      {icon && <Box sx={{ width: 64, height: 64 }}>{icon}</Box>}
     </Card>
   );
 }
@@ -43,6 +36,6 @@ AppWidgetSummary.propTypes = {
   color: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   sx: PropTypes.object,
-  title: PropTypes.string,
-  total: PropTypes.number,
+  subject: PropTypes.string,
+  requirement: PropTypes.string,
 };

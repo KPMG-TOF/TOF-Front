@@ -13,6 +13,7 @@ import { ref_analysis } from 'src/apis/dashboard';
 import AppNewsUpdate from '../app-news-update';
 import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
+import AppAnalysis from '../app-analysis';
 import AppTrafficBySite from '../app-traffic-by-site';
 // import { Content } from 'antd/es/layout/layout';
 
@@ -23,8 +24,102 @@ const { Dragger } = Upload;
 
 export default function AppView() {
 
-  const [rfpData, setRfpData] = useState(null);
+  const [rfpData, setRfpData] = useState({
+    "result":"success",
+
+    "info": {
+        "company": "sso",
+        "industry": "dev",
+        "cost": 12342,
+        "title": "2024-1학기-융합필수-교과목-개설-여부2024.01.30.-17시-기준_공지.xlsx"
+    },
+    "summary": {
+        "size": 5453,
+        "start_date": "2024-02-03T00:07:41.508158",
+        "end_date": "2024-02-03T00:07:41.508158",
+        "subject": [
+            "클라우드가 필요함",
+            "클라우드가 궁금함",
+            "어쩌구"
+        ],
+        "requirement": [
+            "보안이 필요함",
+            "보안이 궁금함",
+            "어쩌구"
+        ]
+    },
+    "reference": [
+        {
+            "rfp_id": 2,
+            "title": "fake ref",
+            "end_date": "2024-02-03T00:53:59.488754",
+            "manager": "sso",
+            "similarity": 44
+        }
+    ],
+    "tasks": {
+        "priority": [
+            {
+                "order": 2,
+                "title": "priority"
+            }
+        ],
+        "competivity": [
+            {
+                "order": 941,
+                "title": "competivity"
+            },
+            {
+                "order": 603,
+                "title": "competivity"
+            },
+            {
+                "order": 460,
+                "title": "competivity"
+            },
+            {
+                "order": 665,
+                "title": "competivity"
+            }
+        ],
+        "workforce": [
+            {
+                "count": 910,
+                "category": "workforce"
+            },
+            {
+                "count": 225,
+                "category": "workforce"
+            },
+            {
+                "count": 290,
+                "category": "workforce"
+            }
+        ]
+    }
+});
   const [fileList, setFileList] = useState([]);
+
+  let reference = [
+    // {
+    //   title : "특성화 트랙 사업 제안 요청서",
+    //   time : "2022.08.29",
+    //   name : "이수민",
+    //   num : "82.1%"
+    // },
+    // {
+    //   title : "공학 인재 양성 사업 제안 요청서",
+    //   time : "2022.08.29",
+    //   name : "이지원",
+    //   num : "53.1%"
+    // },
+    // {
+    //   title : "과학 중점 학교 사업 제안 요청서",
+    //   time : "2022.08.29",
+    //   name : "시게타 하루아",
+    //   num : "30.1%"
+    // },
+  ]
 
   const props = {
     name: 'file',
@@ -46,11 +141,6 @@ export default function AppView() {
       console.log('Dropped files', e.dataTransfer.files);
     },
   };
-  
-
-  // useEffect(() => {
-
-  // },[RFPData])
 
   const handleRef_analysis = async () => {
     const data = { rfpData };
@@ -79,10 +169,10 @@ export default function AppView() {
 
       {rfpData ? (
       <Grid container spacing={3}>
-      <Grid xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Weekly Sales"
-            total={714000}
+            subject={rfpData.summary.subject[0]}
+            requirement={rfpData.summary.requirement[0]}
             color="success"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
           />
@@ -90,8 +180,8 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="New Users"
-            total={1352831}
+            subject={rfpData.summary.subject[1]}
+            requirement={rfpData.summary.requirement[1]}
             color="info"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
           />
@@ -99,8 +189,8 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Item Orders"
-            total={1723315}
+            subject={rfpData.summary.subject[2]}
+            requirement={rfpData.summary.requirement[2]}
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
           />
@@ -108,46 +198,44 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Bug Reports"
-            total={234}
+            subject="RFP Name"
+            requirement="이 부분 지금 하드코딩"
             color="error"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
           />
         </Grid>
 
+        <Grid xs={12} md={6} lg={4}>
+          <AppOrderTimeline
+            title="RFP Summary"
+            list={rfpData.summary}
+          />
+        </Grid>
 
         <Grid xs={12} md={6} lg={8}>
           <AppNewsUpdate
-            title="News Update"
-            list={[...Array(5)].map((_, index) => ({
-              id: faker.string.uuid(),
-              title: faker.person.jobTitle(),
-              description: faker.commerce.productDescription(),
-              image: `/assets/images/covers/cover_${index + 1}.jpg`,
-              postedAt: faker.date.recent(),
-            }))}
+            title="Reference"
+            list={rfpData.reference}
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={4}>
-          <AppOrderTimeline
-            title="Order Timeline"
-            list={[...Array(5)].map((_, index) => ({
-              id: faker.string.uuid(),
-              title: [
-                '1983, orders, $4220',
-                '12 Invoices have been paid',
-                'Order #37745 from September',
-                'New order placed #XF-2356',
-                'New order placed #XF-2346',
-              ][index],
-              type: `order${index + 1}`,
-              time: faker.date.past(),
-            }))}
+
+        <Grid xs={12} md={6} lg={12}>
+          <AppAnalysis
+            title="Analysis"
+            list={reference}
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={4}>
+
+        <Grid xs={12} md={6} lg={12}>
+          <AppNewsUpdate
+            title="Output"
+            list={reference}
+          />
+        </Grid>
+
+        {/* <Grid xs={12} md={6} lg={4}>
           <AppTrafficBySite
             title="Traffic by Site"
             list={[
@@ -173,8 +261,8 @@ export default function AppView() {
               },
             ]}
           />
-        </Grid>
-        </Grid>
+        </Grid> */}
+      </Grid>
       ): (
           <Grid container spacing={3} style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
           <Grid xs={12} sm={6} md={6}>
@@ -184,7 +272,7 @@ export default function AppView() {
             </p>
             <p className="ant-upload-text">Click or drag file to this area to upload</p>
             <p className="ant-upload-hint">
-              Support for a single or bulk upload. Strictly prohibited from uploading company data or other
+              Support for a single or bulk uploads. Strictly prohibited from uploading company data or other
               banned files.
             </p>
           </Dragger>
