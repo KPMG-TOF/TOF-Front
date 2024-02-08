@@ -9,30 +9,81 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Unstable_Grid2';
+
 
 import { fDateTime } from 'src/utils/format-time';
 
 // ----------------------------------------------------------------------
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+}
+
 export default function AnalyticsOrderTimeline({ title, subheader, list, ...other }) {
   return (
-    <Card {...other}>
+    <Card style={{ padding: '1em' }} {...other}>
       <CardHeader title={title} subheader={subheader} />
 
-      <Timeline
-        sx={{
-          m: 0,
-          p: 3,
-          [`& .${timelineItemClasses.root}:before`]: {
-            flex: 0,
-            padding: 0,
-          },
-        }}
-      >
-        {list.map((item, index) => (
-          <OrderItem key={item.id} item={item} lastTimeline={index === list.length - 1} />
-        ))}
-      </Timeline>
+      <Grid container spacing={1}>
+        <Grid item xs={6}>
+          <Card>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                사업규모
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {list.size}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        
+        <Grid item xs={6}>
+          <Card>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                사업기간
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {formatDate(list.start_date)}-{formatDate(list.end_date)}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Card>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                주제
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {list.subject.map((row, index) => (
+                  row
+                ))}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Card>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                요구사항
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {list.requirement.map((row, index) => (
+                  row
+                ))}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
     </Card>
   );
 }

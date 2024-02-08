@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
+import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 
 import { fToNow } from 'src/utils/format-time';
 
@@ -16,30 +17,36 @@ import Scrollbar from 'src/components/scrollbar';
 
 // ----------------------------------------------------------------------
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+}
+
 export default function AppNewsUpdate({ title, subheader, list, ...other }) {
   return (
-    <Card {...other}>
+    <Card style={{ padding: '20px' }} {...other}>
       <CardHeader title={title} subheader={subheader} />
 
-      <Scrollbar>
-        <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
-          {list.map((news) => (
-            <NewsItem key={news.id} news={news} />
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Title</TableCell>
+            <TableCell>기간</TableCell>
+            <TableCell>작성자</TableCell>
+            <TableCell>유사도</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {list.map((row, index) => (
+            <TableRow key={index}>
+              <TableCell>{row.title}</TableCell>
+              <TableCell>{formatDate(row.end_date)}</TableCell>
+              <TableCell>{row.manager}</TableCell>
+              <TableCell>{row.similarity}</TableCell>
+            </TableRow>
           ))}
-        </Stack>
-      </Scrollbar>
-
-      <Divider sx={{ borderStyle: 'dashed' }} />
-
-      <Box sx={{ p: 2, textAlign: 'right' }}>
-        <Button
-          size="small"
-          color="inherit"
-          endIcon={<Iconify icon="eva:arrow-ios-forward-fill" />}
-        >
-          View all
-        </Button>
-      </Box>
+        </TableBody>
+      </Table>
     </Card>
   );
 }
@@ -53,11 +60,27 @@ AppNewsUpdate.propTypes = {
 // ----------------------------------------------------------------------
 
 function NewsItem({ news }) {
-  const { image, title, description, postedAt } = news;
+  const { title, time, name, num } = news;
 
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
-      <Box
+      <Typography sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
+        {title}
+      </Typography>
+
+      <Typography sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
+        {time}
+      </Typography>
+
+      <Typography sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
+        {name}
+      </Typography>
+
+      <Typography sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
+        {num}
+      </Typography>
+
+      {/* <Box
         component="img"
         alt={title}
         src={image}
@@ -72,11 +95,8 @@ function NewsItem({ news }) {
         <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
           {description}
         </Typography>
-      </Box>
+      </Box> */}
 
-      <Typography variant="caption" sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
-        {fToNow(postedAt)}
-      </Typography>
     </Stack>
   );
 }
