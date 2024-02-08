@@ -25,6 +25,7 @@ export default function Header({ onOpenNav }) {
   const theme = useTheme();
 
   const lgUp = useResponsive('up', 'lg');
+  
 
   const renderContent = (
     <>
@@ -51,7 +52,8 @@ export default function Header({ onOpenNav }) {
       sx={{
         boxShadow: 'none',
         height: HEADER.H_MOBILE,
-        zIndex: theme.zIndex.appBar + 1,
+        // zIndex: theme.zIndex.appBar + 1,
+        zIndex: 10, // 수정 Modal 정상적으로 띄우려면 Z-index 수정 필요
         ...bgBlur({
           color: theme.palette.background.default,
         }),
