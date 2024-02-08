@@ -37,7 +37,7 @@ export default function AppSummary({ title, subheader, list, ...other }) {
   );
 }
 
-AnalyticsOrderTimeline.propTypes = {
+AppSummary.propTypes = {
   list: PropTypes.array,
   subheader: PropTypes.string,
   title: PropTypes.string,
@@ -74,6 +74,10 @@ function OrderItem({ item, lastTimeline }) {
 }
 
 OrderItem.propTypes = {
-  item: PropTypes.object,
+  item: PropTypes.shape({
+    type: PropTypes.string,
+    title: PropTypes.string,
+    time: PropTypes.string,
+  }),
   lastTimeline: PropTypes.bool,
 };
