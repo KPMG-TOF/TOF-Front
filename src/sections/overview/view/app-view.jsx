@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { InboxOutlined } from '@ant-design/icons';
 import { message, Empty, Upload } from 'antd';
-import { faker } from '@faker-js/faker';
+// import { faker } from '@faker-js/faker';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-import Iconify from 'src/components/iconify';
+// import Iconify from 'src/components/iconify';
 
 import { ref_analysis } from 'src/apis/dashboard';
 import AppNewsUpdate from '../app-news-update';
 import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
 import AppAnalysis from '../app-analysis';
-import AppTrafficBySite from '../app-traffic-by-site';
 // import { Content } from 'antd/es/layout/layout'; 
 // 수정 file upload 부 수정, dashboard 다 된 뒤에 주석 풀어야 할 듯
 
@@ -101,7 +100,7 @@ export default function AppView() {
 });
   const [fileList, setFileList] = useState([]);
 
-  let reference = [
+  const reference = [
     // {
     //   title : "특성화 트랙 사업 제안 요청서",
     //   time : "2022.08.29",
@@ -120,7 +119,8 @@ export default function AppView() {
     //   name : "시게타 하루아",
     //   num : "30.1%"
     // },
-  ]
+  ];
+ 
 
   const props = {
     name: 'file',
@@ -262,29 +262,26 @@ export default function AppView() {
               },
             ]}
           />
-                  </Grid> */}
-        </Grid>
-        </Grid>
-      {/* // ): (
-           <Grid container spacing={3} style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-           <Grid xs={12} sm={6} md={6}>
-           <Dragger {...props}>
-             <p className="ant-upload-drag-icon">
-               <InboxOutlined />
-             </p>
-             <p className="ant-upload-text">Click or drag file to this area to upload</p>
-             <p className="ant-upload-hint">
-               Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-               banned files.
-             </p>
-           </Dragger>
+            </Grid> */}
 
-           <button onClick={handleRef_analysis}>분석하기</button>
-           </Grid>
-           </Grid>
-         
-       )} */}
-
+          </Grid>
+          {/* ) : (
+        <Grid container spacing={3} style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+          <Grid xs={12} sm={6} md={6}>
+            <Dragger {...props}>
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined />
+              </p>
+              <p className="ant-upload-text">Click or drag file to this area to upload</p>
+              <p className="ant-upload-hint">
+                Support for a single or bulk upload. Strictly prohibited from uploading company data or other banned
+                files.
+              </p>
+            </Dragger>
+            <button type="button" onClick={handleRef_analysis}>분석하기</button>
+          </Grid>
+        </Grid>
+      )} */}
     </Container>
   );
 }

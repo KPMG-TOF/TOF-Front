@@ -79,7 +79,6 @@ function NewsItem({ news }) {
       <Typography sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
         {num}
       </Typography>
-
       {/* <Box
         component="img"
         alt={title}
@@ -103,9 +102,9 @@ function NewsItem({ news }) {
 
 NewsItem.propTypes = {
   news: PropTypes.shape({
-    image: PropTypes.string,
     title: PropTypes.string,
-    description: PropTypes.string,
-    postedAt: PropTypes.instanceOf(Date),
+    time: PropTypes.string,
+    name: PropTypes.string,
+    num: PropTypes.string,
   }),
 };

@@ -15,9 +15,9 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'RFP History',
-    path: '/user',
-    icon: icon('ic_user'),
+    title: 'RFP DashBoard',
+    path: '/rfp',
+    icon: icon('ic_analytics'),
   },
   {
     title: 'Document',

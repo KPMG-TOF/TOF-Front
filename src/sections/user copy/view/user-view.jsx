@@ -20,6 +20,7 @@ import UserTableHead from '../user-table-head';
 import TableEmptyRows from '../table-empty-rows';
 import UserTableToolbar from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
+import RFPpopup from '../RFP-Popup';
 
 // ----------------------------------------------------------------------
 // 수정 RFP LIST
@@ -38,6 +39,8 @@ export default function UserPage() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [rfpList, setrfpList] = useState([]);
+
+  const [openPopup, setOpenPopup] = useState(false);
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -131,6 +134,10 @@ export default function UserPage() {
     filterName,
   });
 
+  const handlePopup = () => {
+    setOpenPopup(false);
+  };
+
   const notFound = !dataFiltered.length && !!filterName;
 
   return (
@@ -138,10 +145,21 @@ export default function UserPage() {
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">RFP List</Typography>
 
-        <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
+        <Button 
+          variant="contained" 
+          color="inherit" 
+          startIcon={<Iconify icon="eva:plus-fill" />}
+          onClick={() => setOpenPopup(true)}
+        >
           New RFP
         </Button>
       </Stack>
+
+      {openPopup ? (
+       <RFPpopup openPopup={openPopup} handlePopup={handlePopup} />
+      ) : (
+        ""
+      )}
 
       <Card>
         <UserTableToolbar
