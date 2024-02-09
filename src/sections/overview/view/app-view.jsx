@@ -14,6 +14,13 @@ import AppNewsUpdate from '../app-news-update';
 import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
 import AppAnalysis from '../app-analysis';
+import Iconify from 'src/components/iconify';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import RFPForm from 'src/sections/user copy/RFPForm';
+
 // import { Content } from 'antd/es/layout/layout'; 
 // 수정 file upload 부 수정, dashboard 다 된 뒤에 주석 풀어야 할 듯
 
@@ -23,6 +30,12 @@ const { Dragger } = Upload;
 // ----------------------------------------------------------------------
 
 export default function AppView() {
+
+  const [fileList, setFileList] = useState([]);
+  const [title, setTitle] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [manager, setManager] = useState('');
+
 
   const [rfpData, setRfpData] = useState({
     "result":"success",
@@ -98,29 +111,26 @@ export default function AppView() {
         ]
     }
 });
-  const [fileList, setFileList] = useState([]);
 
-  const reference = [
-    // {
-    //   title : "특성화 트랙 사업 제안 요청서",
-    //   time : "2022.08.29",
-    //   name : "이수민",
-    //   num : "82.1%"
-    // },
-    // {
-    //   title : "공학 인재 양성 사업 제안 요청서",
-    //   time : "2022.08.29",
-    //   name : "이지원",
-    //   num : "53.1%"
-    // },
-    // {
-    //   title : "과학 중점 학교 사업 제안 요청서",
-    //   time : "2022.08.29",
-    //   name : "시게타 하루아",
-    //   num : "30.1%"
-    // },
-  ];
- 
+  
+  const [reference, setReference] = useState([
+    {
+      title: "특성화 트랙 사업 제안 요청서",
+      end_date: "2022.08.29",
+      manager: "이수민"
+    },
+    {
+      title: "공학 인재 양성 사업 제안 요청서",
+      end_date: "2022.08.29",
+      manager: "이지원"
+    },
+    {
+      title: "과학 중점 학교 사업 제안 요청서",
+      end_date: "2022.08.29",
+      manager: "시게타 하루아"
+    },
+  ]);
+
 
   const props = {
     name: 'file',
@@ -159,6 +169,15 @@ export default function AppView() {
       console.error("Error:", error);
     }
   };
+
+
+  const [openPopup, setOpenPopup] = useState(false);
+  const handlePopup = () => {
+    setOpenPopup(!openPopup);
+  };
+
+
+  
 
   return (
     <Container maxWidth="xl">
@@ -229,12 +248,31 @@ export default function AppView() {
         </Grid>
 
 
-        <Grid xs={12} md={6} lg={12}>
-          <AppNewsUpdate
-            title="Output"
-            list={reference}
-          />
+        <Grid item xs={12}>
+          <Grid container justifyContent="flex-end" alignItems="flex-end" mb={1}>
+            <Button
+              variant="contained"
+              color="inherit"
+              startIcon={<Iconify icon="eva:plus-fill" />}
+              onClick={handlePopup} // Open the Dialog when the button is clicked
+            >
+              Add RFP
+            </Button>
+          </Grid>
+
+          <Grid>
+            <AppNewsUpdate title="Output" list={reference} />
+          </Grid>
+
+          <Dialog open={openPopup} onClose={handlePopup} maxWidth="md">
+            <DialogTitle>Add New RFP</DialogTitle>
+            <DialogContent>
+              <RFPForm setReference={setReference} handleClosePopup={handlePopup} />
+            </DialogContent>
+          </Dialog>
         </Grid>
+       
+
 
         {/* <Grid xs={12} md={6} lg={4}>
           <AppTrafficBySite
