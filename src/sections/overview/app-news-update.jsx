@@ -30,19 +30,19 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
       <Table>
         <TableHead>
           <TableRow>
+          <TableCell>NO</TableCell>
             <TableCell>Title</TableCell>
             <TableCell>기간</TableCell>
             <TableCell>작성자</TableCell>
-            <TableCell>유사도</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {list.map((row, index) => (
             <TableRow key={index}>
+              <TableCell>{index}</TableCell>
               <TableCell>{row.title}</TableCell>
               <TableCell>{formatDate(row.end_date)}</TableCell>
               <TableCell>{row.manager}</TableCell>
-              <TableCell>{row.similarity}</TableCell>
             </TableRow>
           ))}
         </TableBody>
