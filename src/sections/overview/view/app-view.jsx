@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 // import Iconify from 'src/components/iconify';
 
 import { ref_analysis } from 'src/apis/dashboard';
-import AppNewsUpdate from '../app-news-update';
 import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
 import AppAnalysis from '../app-analysis';
@@ -20,6 +19,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import RFPForm from 'src/sections/user copy/RFPForm';
+import AppNewsUpdate from '../app-news-update';
 
 // import { Content } from 'antd/es/layout/layout'; 
 // 수정 file upload 부 수정, dashboard 다 된 뒤에 주석 풀어야 할 듯
@@ -38,18 +38,55 @@ export default function AppView() {
 
 
   const [rfpData, setRfpData] = useState({
-    "result":"success",
-
+    "result": "success",
     "info": {
-        "company": "sso",
         "industry": "dev",
-        "cost": 12342,
-        "title": "2024-1학기-융합필수-교과목-개설-여부2024.01.30.-17시-기준_공지.xlsx"
+        "title": "2024 KPMG 아이디어톤 제안서_TOF.pdf",
+        "company": "sso",
+        "rfp_id": 1,
+        "id": 1,
+        "cost": 12342
     },
     "summary": {
-        "size": 5453,
-        "start_date": "2024-02-03T00:07:41.508158",
-        "end_date": "2024-02-03T00:07:41.508158",
+        "end_date": "2024-02-09T00:42:15.621547",
+        "id": 1,
+        "rfp_id": 1,
+        "size": "5453",
+        "start_date": "2024-02-09T00:42:15.621547",
+        "subjects": [
+            {
+                "content": "클라우드가 필요함",
+                "id": 1,
+                "summary_id": 1
+            },
+            {
+                "content": "클라우드가 궁금함",
+                "id": 2,
+                "summary_id": 1
+            },
+            {
+                "content": "어쩌구",
+                "id": 3,
+                "summary_id": 1
+            }
+        ],
+        "requirements": [
+            {
+                "content": "보안이 필요함",
+                "id": 1,
+                "summary_id": 1
+            },
+            {
+                "content": "보안이 궁금함",
+                "id": 2,
+                "summary_id": 1
+            },
+            {
+                "content": "어쩌구",
+                "id": 3,
+                "summary_id": 1
+            }
+        ],
         "subject": [
             "클라우드가 필요함",
             "클라우드가 궁금함",
@@ -63,49 +100,74 @@ export default function AppView() {
     },
     "reference": [
         {
-            "rfp_id": 2,
+            "rfp_id": 5,
             "title": "fake ref",
-            "end_date": "2024-02-03T00:53:59.488754",
+            "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
-            "similarity": 44
+            "similarity": 29
+        },
+        {
+            "rfp_id": 6,
+            "title": "fake ref",
+            "end_date": "2024-02-09T00:56:40.954433",
+            "manager": "sso",
+            "similarity": 71
+        },
+        {
+            "rfp_id": 6,
+            "title": "fake ref",
+            "end_date": "2024-02-09T00:56:40.954433",
+            "manager": "sso",
+            "similarity": 47
+        },
+        {
+            "rfp_id": 5,
+            "title": "fake ref",
+            "end_date": "2024-02-09T00:56:40.954433",
+            "manager": "sso",
+            "similarity": 89
         }
     ],
     "tasks": {
         "priority": [
             {
-                "order": 2,
+                "order": 15,
+                "title": "priority"
+            },
+            {
+                "order": 6,
                 "title": "priority"
             }
         ],
         "competivity": [
             {
-                "order": 941,
+                "order": 246,
                 "title": "competivity"
             },
             {
-                "order": 603,
+                "order": 918,
                 "title": "competivity"
             },
             {
-                "order": 460,
+                "order": 784,
                 "title": "competivity"
             },
             {
-                "order": 665,
+                "order": 465,
                 "title": "competivity"
             }
         ],
         "workforce": [
             {
-                "count": 910,
+                "count": 734,
                 "category": "workforce"
             },
             {
-                "count": 225,
+                "count": 595,
                 "category": "workforce"
             },
             {
-                "count": 290,
+                "count": 973,
                 "category": "workforce"
             }
         ]
@@ -241,8 +303,8 @@ export default function AppView() {
 
 
         <Grid xs={12} md={6} lg={12}>
-          <AppAnalysis
-            title="Analysis"
+          <AppAnalysis 
+            title="Analysis" 
             list={reference}
           />
         </Grid>
