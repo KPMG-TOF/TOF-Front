@@ -1,46 +1,8 @@
-## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
+[Dashboard 전체 페이지_240211]
+![Dashboard](https://github.com/KPMG-TOF/TOF-Front/assets/86039192/c5f3936e-acb8-4942-a6ec-5a1c575a199c)
 
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
+![dashboard1](https://github.com/KPMG-TOF/TOF-Front/assets/86039192/e1de00b8-376b-42cc-b296-86994200b227)
+- Reference: 백엔드 response 값 수정됐길래 하드코딩으로 박아놓은 거 다시 수정
 
-> Free React Admin Dashboard made with Material-UI components and React.
-
-![preview](public/assets/preview.jpg)
-
-## Demo
-
-- [Dashboard Page](https://minimal-kit-react.vercel.app/)
-- [Users Page](https://minimal-kit-react.vercel.app/user)
-- [Products Page](https://minimal-kit-react.vercel.app/products)
-- [Blog Page](https://minimal-kit-react.vercel.app/blog)
-- [Login Page](https://minimal-kit-react.vercel.app/login)
-- [Not Found Page](https://minimal-kit-react.vercel.app/404)
-
-## Quick start
-
-- [Download from Github](https://github.com/minimal-ui-kit/material-kit-react/archive/refs/heads/main.zip) or clone the repo : `git clone https://github.com/minimal-ui-kit/material-kit-react.git`
-- Recommended `Node.js v18.x`.
-- **Install:** `yarn install`
-- **Start:** `yarn dev`
-- **Build:** `yarn build`
-
-## Upgrade to PRO Version
-
-| Minimal Free     | [Minimal Pro](https://material-ui.com/store/items/minimal-dashboard/) |
-| :--------------- | :-------------------------------------------------------------------- |
-| **6** Demo Pages | **70+** Demo Pages                                                    |
-| -                | Authentication with **Amplify**, **Auth0**, **JWT** and **Firebase**  |
-| -                | [+More components](https://minimals.cc/components)                    |
-| -                | Dark & light mode                                                     |
-| -                | Next.js version                                                       |
-| -                | TypeScript version (Standard Plus and Extended license)               |
-| -                | Design Figma File (Standard Plus and Extended license)                |
-| -                | Complete Users Flows                                                  |
-| -                | Learn more: [Package & License](https://docs.minimals.cc/package)     |
-
-## License
-
-Distributed under the MIT License. See [LICENSE](https://github.com/minimal-ui-kit/minimal.free/blob/main/LICENSE.md) for more information.
-
-## Contact us
-
-Email: support@minimals.cc
+![dashboard2](https://github.com/KPMG-TOF/TOF-Front/assets/86039192/6804428f-e6a0-430c-9f47-c78a8e3d01fc)
+- Analysis: Figma랑 최대한 비슷하게 UI 수정 (소스코드 보면 짜친 게 많이 보임...)
