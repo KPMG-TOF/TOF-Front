@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Modal, Button, message, Upload } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
+import { UploadOutlined  } from '@ant-design/icons';
 import Grid from '@mui/material/Unstable_Grid2';
+import Typography from '@mui/material/Typography';
 import { ref_analysis } from 'src/apis/dashboard';
+
 
 const ModalContainer = styled.div`
   min-width: 66%;
@@ -12,7 +14,7 @@ const ModalContainer = styled.div`
   left: calc(50% - (66% / 2));
   top: calc(50% - (63% / 2));
   position: fixed;
-  z-index: 9999;
+  z-index: 100;
 `;
 
 
@@ -22,16 +24,65 @@ const TitleContainer = styled.div`
 `;
 
 
-const { Dragger } = Upload;
+export const FileInput = styled.input.attrs({ type: 'file' })`
+  display: none;
+
+  &::file-selector-button {
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #08c;
+    border-radius: 12px;
+    padding: 24px 32px;
+    cursor: pointer;
+  }
+`;
+
+export const Preview = styled.label`
+  width: 350px;
+  height: 160px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 3px dashed #eee;
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 101;
+
+  &:hover {
+    border-color: #08c;
+  }
+
+  &.active {
+    background-color: #efeef3;
+    border-color: #08c;
+  }
+`;
+
+export const PreviewMessage = styled.p`
+  font-weight: 500;
+  font-size: 18px;
+  margin: 20px 0 10px;
+`;
+
+export const PreviewDescription = styled.p`
+  margin: 0;
+  font-size: 14px;
+`;
+
 
 const RFPpopup = ({ handlePopup, openPopup }) => {
 
-  const [fileList, setFileList] = useState([]);
+  const [uploadfile, setUploadFile] = useState(null);
   const [rfpData, setRfpData] = useState(null);
 
+  const [isActive, setActive] = useState(false);
 
   const handleRef_analysis = async () => {
-    const data = { rfpData };
+    const data = { uploadfile };
 
     try {
       const response = await ref_analysis(data);
@@ -47,26 +98,38 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
     }
   };
 
-  const props = {
-    name: 'file',
-    multiple: true,
-    action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
-    onChange(info) {
-      setFileList(info.fileList);
-      const { status } = info.file;
-      if (status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-    onDrop(e) {
-      console.log('Dropped files', e.dataTransfer.files);
-    },
+
+  const handleDragEnter = (e) => {
+    console.log("Drag Enter");
+    setActive(true);
   };
+  
+  const handleDragLeave = (e) => {
+    console.log("Drag Leave");
+    setActive(false);
+  };
+  
+  const handleDragOver = (e) => {
+    e.preventDefault(); // 필수: 드래그 오버 시 기본 이벤트 방지
+    console.log("Drag Over");
+  };
+  
+  const handleDrop = (e) => {
+    e.preventDefault();
+    console.log("Drop");
+    setActive(false);
+  
+    const file = e.dataTransfer.files[0];
+    setUploadFile(file);
+  };
+  
+  const handleUpload = (e) => {
+    const file = e.files[0];
+    setUploadFile(file);
+  };
+
+
+  
 
   return (
     <>
@@ -94,18 +157,32 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
           ]}
       >
         <Grid container spacing={3} style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                <Grid xs={12} sm={6} md={6}>
-                  <Dragger {...props}>
-                    <p className="ant-upload-drag-icon">
-                      <InboxOutlined />
-                    </p>
-                    <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                    <p className="ant-upload-hint">
-                      Support for a single or bulk upload. Strictly prohibited from uploading company data or other banned
-                      files.
-                    </p>
-                  </Dragger>
-                </Grid>
+        <Grid xs={12} sm={6} md={6}>
+          <Preview
+            className={`${isActive ? 'active' : ''}`}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+            onDragLeave={handleDragLeave}
+            onDragEnter={handleDragEnter} 
+            htmlFor="customFileUpload" 
+          >
+            
+            <FileInput // Changed from <input> for styled-component
+              id="customFileUpload"
+              onChange={handleUpload }
+              accept=".pdf"
+              multiple // Remove if you want to restrict to single file uploads
+            />
+            <UploadOutlined style={{ fontSize: '32px', color: '#08c' }} />
+
+            <Typography variant="body2" sx={{ mb: 2, fontSize: '14px', color: 'grey', whiteSpace:'pre-wrap', textAlign: 'center'}}>
+              Click or drag file
+              <br />
+              to this area to upload
+            </Typography>
+
+          </Preview>
+        </Grid>
               </Grid>
       </Modal>
       </ModalContainer>
