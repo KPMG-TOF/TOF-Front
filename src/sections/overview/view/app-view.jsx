@@ -35,7 +35,7 @@ export default function AppView() {
   const [title, setTitle] = useState('');
   const [endDate, setEndDate] = useState('');
   const [manager, setManager] = useState('');
-
+  const [rfindex, rfsetIndex] = useState(4); // Initialize index state with 1
 
   const [rfpData, setRfpData] = useState({
     "result": "success",
@@ -179,17 +179,23 @@ export default function AppView() {
     {
       title: "특성화 트랙 사업 제안 요청서",
       end_date: "2022.08.29",
-      manager: "이수민"
+      manager: "이수민",
+      index :"1",
+      link : "http://localhost:3030/rfp/1"
     },
     {
       title: "공학 인재 양성 사업 제안 요청서",
       end_date: "2022.08.29",
-      manager: "이지원"
+      manager: "이지원",
+      index :"2",
+      link : "http://localhost:3030/rfp/2"
     },
     {
       title: "과학 중점 학교 사업 제안 요청서",
       end_date: "2022.08.29",
-      manager: "시게타 하루아"
+      manager: "시게타 하루아",
+      index:"3",
+      link : "http://localhost:3030/rfp/3"
     },
   ]);
 
@@ -329,7 +335,8 @@ export default function AppView() {
           <Dialog open={openPopup} onClose={handlePopup} maxWidth="md">
             <DialogTitle>Add New RFP</DialogTitle>
             <DialogContent>
-              <RFPForm setReference={setReference} handleClosePopup={handlePopup} />
+              <RFPForm setReference={setReference} handleClosePopup={handlePopup} rfsetIndex={rfsetIndex} rfindex={rfindex}/>
+          
             </DialogContent>
           </Dialog>
         </Grid>

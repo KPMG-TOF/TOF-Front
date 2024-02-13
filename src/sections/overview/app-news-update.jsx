@@ -34,6 +34,7 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
             <TableCell>Title</TableCell>
             <TableCell>기간</TableCell>
             <TableCell>작성자</TableCell>
+            <TableCell>link</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -43,6 +44,15 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
               <TableCell>{row.title}</TableCell>
               <TableCell>{formatDate(row.end_date)}</TableCell>
               <TableCell>{row.manager}</TableCell>
+              {row.link ? (
+                <TableCell>
+                  <a href={row.link} target="_blank" rel="noopener noreferrer">
+                    link
+                  </a>
+                </TableCell>
+              ) : (
+                <TableCell></TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>
