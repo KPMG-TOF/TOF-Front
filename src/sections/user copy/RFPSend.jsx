@@ -1,9 +1,11 @@
+import { fileoutput, linkoutput } from "src/apis/dashboard";
+import axios from "axios";
 import React, { useState } from 'react';
 import { Modal, Button, message, Upload } from 'antd';
 import PropTypes from 'prop-types';
 import { InboxOutlined } from '@ant-design/icons';
 
-const RFPsend = ({ openPopup, handlePopup }) => {
+export const RFPsend = ({ openPopup, handlePopup }) => {
   const [fileList, setFileList] = useState([]);
 
   const props = {
@@ -63,9 +65,8 @@ const RFPsend = ({ openPopup, handlePopup }) => {
   );
 };
 
-RFPsend.propTypes = {
-  openPopup: PropTypes.bool.isRequired,
-  handlePopup: PropTypes.func.isRequired,
-};
 
-export default RFPsend;
+
+
+
+
