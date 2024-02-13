@@ -1,12 +1,14 @@
 // RFPForm.js
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+
+import React, { useState,useEffect } from 'react';
 import { Grid, TextField, Button, Stack, Checkbox } from '@mui/material';
 import Iconify from 'src/components/iconify';
-import RFPsend from './RFPSend';
+import PropTypes from 'prop-types';
+import {output_analysis, RFPsend, linkoutput_analysis} from './RFPSend';
+import {linkoutput, fileoutput} from 'src/apis/dashboard'
 
 
-const RFPForm = ({ setReference , handleClosePopup}) => {
+const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split('T')[0];
 
@@ -14,13 +16,16 @@ const RFPForm = ({ setReference , handleClosePopup}) => {
   const [end_date, setEndDate] = useState(formattedDate);
   const [manager, setManager] = useState('Writer');
   const [openPopup, setOpenPopup] = useState(false);
-
   const [showFileUpload, setShowFileUpload] = useState(true);
-
+  const [showLinkUpload, setShowLinkUpload] = useState(true);
 
   const handleFileUploadClick = () => {
     setShowFileUpload(!showFileUpload);
   };
+
+  const handleLinkUpload = () => {
+    setShowLinkUpload(!showLinkUpload);
+  }
 
   const handlePopup = () => {
     setOpenPopup(!openPopup);
@@ -33,16 +38,47 @@ const RFPForm = ({ setReference , handleClosePopup}) => {
 
   const formSubmit = () => {
     // Create an object representing the form data
+    const link = "http://localhost:3030" + "/" + rfindex;
     const formData = {
       title,
       end_date,
       manager,
+      rfindex,
     };
+  
+  
+    if (showFileUpload) {
+      const fileInput = document.getElementById('file-upload');
+      const rfpData = {
+        file: fileInput ? fileInput.files[0] : null,
+        date: end_date,
+        writer: manager,
+        rfp_id: rfindex,
+      };
+      
+      formData.file = './uploads/RFP1.hwp'
 
-    setReference((prevReference) => [...prevReference, formData]);
+      
+      fileoutput(rfpData);
+    }
+  
+    if (showLinkUpload) {
+      let rfpData = {
+        date: end_date,
+        writer: manager,
+        rfp_id: rfindex,
+      };
+  
+      // Add link property if showLinkUpload is true
+     
+      rfpData.link = link;
+      formData.link = link;
+  
+      linkoutput(rfpData);
+    }
     console.log('Form Data:', formData);
-
-
+    setReference((prevReference) => [...prevReference, formData]);
+    rfsetIndex((prevIndex) => prevIndex + 1);
     handleClosePopup();
   };
 
@@ -82,10 +118,8 @@ const RFPForm = ({ setReference , handleClosePopup}) => {
 
       {/* Checkbox */}
       <Checkbox
-        label="Link"
-        onChange={() => {
-          // Handle checkbox change logic
-        }}
+          onChange={handleLinkUpload}
+          checked={showLinkUpload}
       />
       Link
       <Checkbox    
@@ -93,13 +127,7 @@ const RFPForm = ({ setReference , handleClosePopup}) => {
           checked={showFileUpload}
       />
      File Upload
-      
-      
-
-      {/* File upload */}
-
-
-
+    
      {showFileUpload &&( <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
         <div
           style={{
@@ -136,6 +164,7 @@ const RFPForm = ({ setReference , handleClosePopup}) => {
         </div>
         
       </Stack>)}
+
 
       {openPopup && <RFPsend openPopup={openPopup} handlePopup={handlePopup} />}
       <Grid container spacing={3} justifyContent="right">
