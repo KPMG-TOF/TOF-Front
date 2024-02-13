@@ -1,9 +1,12 @@
 // RFPForm.js
+
 import React, { useState,useEffect } from 'react';
 import { Grid, TextField, Button, Stack, Checkbox } from '@mui/material';
 import Iconify from 'src/components/iconify';
 import PropTypes from 'prop-types';
 import {output_analysis, RFPsend, linkoutput_analysis} from './RFPSend';
+import {linkoutput, fileoutput} from 'src/apis/dashboard'
+
 
 const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const currentDate = new Date();
@@ -15,8 +18,6 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const [openPopup, setOpenPopup] = useState(false);
   const [showFileUpload, setShowFileUpload] = useState(true);
   const [showLinkUpload, setShowLinkUpload] = useState(true);
-  const [file, setFile] = useState(null);
-  
 
   const handleFileUploadClick = () => {
     setShowFileUpload(!showFileUpload);
@@ -58,7 +59,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       formData.file = './uploads/RFP1.hwp'
 
       
-      output_analysis(rfpData);
+      fileoutput(rfpData);
     }
   
     if (showLinkUpload) {
@@ -73,17 +74,12 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       rfpData.link = link;
       formData.link = link;
   
-      linkoutput_analysis(rfpData);
+      linkoutput(rfpData);
     }
     console.log('Form Data:', formData);
     setReference((prevReference) => [...prevReference, formData]);
     rfsetIndex((prevIndex) => prevIndex + 1);
     handleClosePopup();
-  };
-
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
   };
 
 
@@ -147,12 +143,15 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
             cursor: 'pointer',
           }}
         >
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="file-upload" style={{ width: '100%' }}>
             <div style={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-            <span style={{ flex: '1' }}>  <Iconify icon="eva:file-outline" style={{ marginRight: '5px' }} />
-              Choose File</span>
+            <span style={{ flex: '1' }}>  
+            <Iconify icon="eva:file-outline" style={{ marginRight: '5px' }} />
+              Choose File
+              </span>
             </div>
-          </label>
+            </label>
           <input
             id="file-upload"
             type="file"
@@ -163,6 +162,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
             }}
           />
         </div>
+        
       </Stack>)}
 
 

@@ -2,6 +2,7 @@ import { fileoutput, linkoutput } from "src/apis/dashboard";
 import axios from "axios";
 import React, { useState } from 'react';
 import { Modal, Button, message, Upload } from 'antd';
+import PropTypes from 'prop-types';
 import { InboxOutlined } from '@ant-design/icons';
 
 export const RFPsend = ({ openPopup, handlePopup }) => {
@@ -69,44 +70,3 @@ export const RFPsend = ({ openPopup, handlePopup }) => {
 
 
 
-
-
-
-
-
-
-
-
-
-export const output_analysis = async (rfpData) => {
-  console.log("rfpData",rfpData);
-  try {
-    const response = await fileoutput(rfpData);
-    if (response.data.result === "success") {
-      console.log("res: ", response.data.result);
-      message.success("RFP 분석 성공.");
-    } else {
-      message.warning("RFP 분석 실패. 다시 시도해주세요.");
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
-
-export const linkoutput_analysis = async (rfpData) => {
-    console.log("rfpData",rfpData);
-    try {
-      const response = await linkoutput(rfpData);
-      if (response.data.result === "success") {
-        console.log("res: ", response.data.result);
-        message.success("RFP 분석 성공.");
-      } else {
-        message.warning("RFP 분석 실패. 다시 시도해주세요.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-  
-
-  
