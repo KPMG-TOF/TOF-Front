@@ -15,6 +15,8 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const [openPopup, setOpenPopup] = useState(false);
   const [showFileUpload, setShowFileUpload] = useState(true);
   const [showLinkUpload, setShowLinkUpload] = useState(true);
+  const [file, setFile] = useState(null);
+  
 
   const handleFileUploadClick = () => {
     setShowFileUpload(!showFileUpload);
@@ -43,7 +45,6 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       rfindex,
     };
   
-    console.log('Form Data:', formData);
   
     if (showFileUpload) {
       const fileInput = document.getElementById('file-upload');
@@ -53,7 +54,10 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
         writer: manager,
         rfp_id: rfindex,
       };
-  
+      
+      formData.file = './uploads/RFP1.hwp'
+
+      
       output_analysis(rfpData);
     }
   
@@ -65,19 +69,24 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       };
   
       // Add link property if showLinkUpload is true
-      if (showLinkUpload) {
-        rfpData.link = link;
-        formData.link = link;
-      }
+     
+      rfpData.link = link;
+      formData.link = link;
   
       linkoutput_analysis(rfpData);
     }
-    console.log("reference", formData);
+    console.log('Form Data:', formData);
     setReference((prevReference) => [...prevReference, formData]);
     rfsetIndex((prevIndex) => prevIndex + 1);
     handleClosePopup();
   };
-  
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+  };
+
+
   return (
     <Grid >
      <Grid container spacing={2} justifyContent="center">
@@ -155,6 +164,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
           />
         </div>
       </Stack>)}
+
 
       {openPopup && <RFPsend openPopup={openPopup} handlePopup={handlePopup} />}
       <Grid container spacing={3} justifyContent="right">
