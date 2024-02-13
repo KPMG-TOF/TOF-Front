@@ -4,7 +4,7 @@ import React, { useState,useEffect } from 'react';
 import { Grid, TextField, Button, Stack, Checkbox } from '@mui/material';
 import Iconify from 'src/components/iconify';
 import PropTypes from 'prop-types';
-import {output_analysis, RFPsend, linkoutput_analysis} from './RFPSend';
+import {RFPsend} from './RFPSend';
 import {linkoutput, fileoutput} from 'src/apis/dashboard'
 
 
@@ -16,8 +16,9 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const [end_date, setEndDate] = useState(formattedDate);
   const [manager, setManager] = useState('Writer');
   const [openPopup, setOpenPopup] = useState(false);
-  const [showFileUpload, setShowFileUpload] = useState(true);
+  const [showFileUpload, setShowFileUpload] = useState(false);
   const [showLinkUpload, setShowLinkUpload] = useState(true);
+  const [fileLink , setFileLink] = useState(" ");
 
   const handleFileUploadClick = () => {
     setShowFileUpload(!showFileUpload);
@@ -56,7 +57,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
         rfp_id: rfindex,
       };
       
-      formData.file = './uploads/RFP1.hwp'
+      formData.file = fileLink
 
       
       fileoutput(rfpData);
@@ -127,6 +128,44 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
           checked={showFileUpload}
       />
      File Upload
+
+     {showLinkUpload &&( <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
+        <div
+          style={{
+            backgroundColor: '#f0faff', // Light blue background color
+            border: '1px dashed #ccc', // Dashed border
+            borderRadius: '4px',
+            padding: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            marginBottom : '20px',
+            width: '100%',
+          }}
+        >
+       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="file-upload" style={{ width: '100%' }}>
+          <div style={{ display: 'flex', alignItems: 'center', textAlign: 'center', width:'100%' }}>
+           
+            <input
+              type="text"
+              placeholder="Enter Link"
+              style={{
+                marginLeft: '10px',
+                padding: '5px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                width:'100%',
+              }}
+              onChange={(e) => setFileLink(e.target.value)}
+            />
+          </div>
+        </label>  
+        </div>
+        
+      </Stack>)}
+
     
      {showFileUpload &&( <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
         <div
@@ -165,6 +204,9 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
         
       </Stack>)}
 
+
+      
+    
 
       {openPopup && <RFPsend openPopup={openPopup} handlePopup={handlePopup} />}
       <Grid container spacing={3} justifyContent="right">
