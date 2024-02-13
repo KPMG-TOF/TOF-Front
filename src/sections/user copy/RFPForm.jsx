@@ -1,9 +1,10 @@
 // RFPForm.js
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Grid, TextField, Button, Stack, Checkbox } from '@mui/material';
 import Iconify from 'src/components/iconify';
 import RFPsend from './RFPSend';
-import PropTypes from 'prop-types';
+
 
 const RFPForm = ({ setReference , handleClosePopup}) => {
   const currentDate = new Date();
@@ -114,12 +115,15 @@ const RFPForm = ({ setReference , handleClosePopup}) => {
             cursor: 'pointer',
           }}
         >
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="file-upload" style={{ width: '100%' }}>
             <div style={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-            <span style={{ flex: '1' }}>  <Iconify icon="eva:file-outline" style={{ marginRight: '5px' }} />
-              Choose File</span>
+            <span style={{ flex: '1' }}>  
+            <Iconify icon="eva:file-outline" style={{ marginRight: '5px' }} />
+              Choose File
+              </span>
             </div>
-          </label>
+            </label>
           <input
             id="file-upload"
             type="file"
@@ -130,6 +134,7 @@ const RFPForm = ({ setReference , handleClosePopup}) => {
             }}
           />
         </div>
+        
       </Stack>)}
 
       {openPopup && <RFPsend openPopup={openPopup} handlePopup={handlePopup} />}

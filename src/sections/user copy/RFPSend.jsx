@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, message, Upload } from 'antd';
+import PropTypes from 'prop-types';
 import { InboxOutlined } from '@ant-design/icons';
 
 const RFPsend = ({ openPopup, handlePopup }) => {
@@ -60,6 +61,11 @@ const RFPsend = ({ openPopup, handlePopup }) => {
       </Upload.Dragger>
     </Modal>
   );
+};
+
+RFPsend.propTypes = {
+  openPopup: PropTypes.bool.isRequired,
+  handlePopup: PropTypes.func.isRequired,
 };
 
 export default RFPsend;
