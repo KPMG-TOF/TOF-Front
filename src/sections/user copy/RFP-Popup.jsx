@@ -135,7 +135,7 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
     <>
       <ModalContainer>
         <Modal
-          width={1000}
+          width={800}
           title={
             <TitleContainer>
               RFP File Analysis
