@@ -73,6 +73,14 @@ export const PreviewDescription = styled.p`
   font-size: 14px;
 `;
 
+const FileInfo = ({ name, size, type }) => (
+  <div>
+    <p>Name: {name}</p>
+    <p>Size: {size}</p>
+    <p>Type: {type}</p>
+  </div>
+);
+
 
 const RFPpopup = ({ handlePopup, openPopup }) => {
 
@@ -80,8 +88,20 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
   const [rfpData, setRfpData] = useState(null);
 
   const [isActive, setActive] = useState(false);
+  const [rfpfileinfo, setrfpfileinfo] = useState(null);
+
+  const setFileInfo = (file) => {
+    const { name, size: byteSize, type } = file;
+    const size = `${(byteSize / (1024 * 1024)).toFixed(2)} MB`; 
+    setrfpfileinfo({ name, size, type });  // name, size, type 정보를 uploadedInfo에 저장
+    setUploadFile(file);
+  };
 
   const handleRef_analysis = async () => {
+    if (uploadfile===null) {
+      message.warning("No file uploaded.");
+      return;
+    }
     const data = { uploadfile };
 
     try {
@@ -120,13 +140,14 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
     setActive(false);
   
     const file = e.dataTransfer.files[0];
-    setUploadFile(file);
+    setFileInfo(file);
   };
   
   const handleUpload = (e) => {
-    const file = e.files[0];
-    setUploadFile(file);
+    const file = e.target.files[0]; // Corrected access to the file
+    setFileInfo(file);
   };
+
 
 
   
@@ -158,6 +179,8 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
       >
         <Grid container spacing={3} style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
         <Grid xs={12} sm={6} md={6}>
+
+        
           <Preview
             className={`${isActive ? 'active' : ''}`}
             onDragOver={handleDragOver}
@@ -173,6 +196,10 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
               accept=".pdf"
               multiple // Remove if you want to restrict to single file uploads
             />
+
+            {rfpfileinfo && <FileInfo {...rfpfileinfo} />}
+            {!rfpfileinfo && (
+              <>
             <UploadOutlined style={{ fontSize: '32px', color: '#08c' }} />
 
             <Typography variant="body2" sx={{ mb: 2, fontSize: '14px', color: 'grey', whiteSpace:'pre-wrap', textAlign: 'center'}}>
@@ -180,6 +207,8 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
               <br />
               to this area to upload
             </Typography>
+            </>
+            )}
 
           </Preview>
         </Grid>
@@ -191,8 +220,16 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
 };
 
 RFPpopup.propTypes = {
-  handlePopup: PropTypes.func.isRequired, // handlePopup prop의 유효성을 검사하는 부분 추가
-  openPopup: PropTypes.bool.isRequired, // openPopup prop의 유효성을 검사하는 부분 추가
+  handlePopup: PropTypes.func.isRequired,
+  openPopup: PropTypes.bool.isRequired,
+  FileInfo: PropTypes.func.isRequired,
 };
+
+FileInfo.propTypes = {
+  name: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};
+
 
 export default RFPpopup;
