@@ -49,6 +49,7 @@ export  function AppNewsUpdate({ title, subheader, list, ...other }) {
               <TableCell>{row.keyword.map((keywords, i) => (
                 <span key={i}>{keywords.join(' , ')}</span>
               ))}</TableCell>
+
             </TableRow>
           ))}
         </TableBody>

@@ -4,8 +4,10 @@ import React, { useState,useEffect } from 'react';
 import { Grid, TextField, Button, Stack, Checkbox } from '@mui/material';
 import Iconify from 'src/components/iconify';
 import PropTypes from 'prop-types';
-import {RFPsend} from './RFPSend';
+
 import {linkoutput, fileoutput} from 'src/apis/dashboard'
+import {RFPsend} from './RFPSend';
+
 
 
 const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
@@ -19,6 +21,12 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const [showFileUpload, setShowFileUpload] = useState(false);
   const [showLinkUpload, setShowLinkUpload] = useState(true);
   const [fileLink , setFileLink] = useState(" ");
+  const [reffile, setFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+  };
 
   const handleFileUploadClick = () => {
     setShowFileUpload(!showFileUpload);
@@ -39,7 +47,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
 
   const formSubmit = () => {
     // Create an object representing the form data
-    const link = "http://localhost:3030" + "/" + rfindex;
+    const link = `http://localhost:3030/${rfindex}`;
     const formData = {
       title,
       end_date,
@@ -51,7 +59,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
     if (showFileUpload) {
       const fileInput = document.getElementById('file-upload');
       const rfpData = {
-        file: fileInput ? fileInput.files[0] : null,
+        file: reffile,
         date: end_date,
         writer: manager,
         rfp_id: rfindex,
@@ -59,12 +67,12 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       
       formData.file = fileLink
 
-      
+      console.log('RFP Data:', rfpData);
       fileoutput(rfpData);
     }
   
     if (showLinkUpload) {
-      let rfpData = {
+      const rfpData = {
         date: end_date,
         writer: manager,
         rfp_id: rfindex,
@@ -77,7 +85,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   
       linkoutput(rfpData);
     }
-    console.log('Form Data:', formData);
+    console.log("file",reffile)
     setReference((prevReference) => [...prevReference, formData]);
     rfsetIndex((prevIndex) => prevIndex + 1);
     handleClosePopup();
@@ -195,18 +203,12 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
             id="file-upload"
             type="file"
             style={{ display: 'none' }}
-            onChange={(e) => {
-              const file = e.target.files[0];
-              // Handle file upload logic here
-            }}
+            onChange={handleFileChange}
           />
         </div>
         
       </Stack>)}
 
-
-      
-    
 
       {openPopup && <RFPsend openPopup={openPopup} handlePopup={handlePopup} />}
       <Grid container spacing={3} justifyContent="right">
@@ -233,6 +235,14 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
 
     </Grid>
   );
+};
+
+
+RFPForm.propTypes = {
+  setReference: PropTypes.func.isRequired,
+  handleClosePopup: PropTypes.func.isRequired,
+  rfsetIndex: PropTypes.func.isRequired, 
+  rfindex: PropTypes.number.isRequired, 
 };
 
 export default RFPForm;

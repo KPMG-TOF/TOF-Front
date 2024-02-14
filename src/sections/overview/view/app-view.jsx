@@ -301,7 +301,7 @@ export default function AppView() {
               startIcon={<Iconify icon="eva:plus-fill" />}
               onClick={handlePopup} // Open the Dialog when the button is clicked
             >
-              Add RFP
+              Add Reference
             </Button>
           </Grid>
 
@@ -310,7 +310,7 @@ export default function AppView() {
           </Grid>
 
           <Dialog open={openPopup} onClose={handlePopup} maxWidth="md">
-            <DialogTitle>Add New RFP</DialogTitle>
+            <DialogTitle>Add New Reference</DialogTitle>
             <DialogContent>
               <RFPForm setReference={setReference} handleClosePopup={handlePopup} rfsetIndex={rfsetIndex} rfindex={rfindex}/>
           
