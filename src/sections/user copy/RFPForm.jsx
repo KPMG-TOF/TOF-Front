@@ -158,7 +158,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
                 borderRadius: '4px',
                 width:'100%',
               }}
-              onChange={(e) => setFileLink(e.target.value)}
+              onChange={(e) => setFileLink("/uploads/RFP1.hwp")}
             />
           </div>
         </label>  
