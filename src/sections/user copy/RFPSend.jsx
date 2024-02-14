@@ -65,6 +65,10 @@ export const RFPsend = ({ openPopup, handlePopup }) => {
   );
 };
 
+RFPsend.propTypes = {
+  handlePopup: PropTypes.func.isRequired, // handlePopup prop의 유효성을 검사하는 부분 추가
+  openPopup: PropTypes.bool.isRequired, // openPopup prop의 유효성을 검사하는 부분 추가
+};
 
 
 

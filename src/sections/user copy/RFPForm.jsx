@@ -4,8 +4,10 @@ import React, { useState,useEffect } from 'react';
 import { Grid, TextField, Button, Stack, Checkbox } from '@mui/material';
 import Iconify from 'src/components/iconify';
 import PropTypes from 'prop-types';
-import {RFPsend} from './RFPSend';
+
 import {linkoutput, fileoutput} from 'src/apis/dashboard'
+import {RFPsend} from './RFPSend';
+
 
 
 const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
@@ -39,7 +41,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
 
   const formSubmit = () => {
     // Create an object representing the form data
-    const link = "http://localhost:3030" + "/" + rfindex;
+    const link = `http://localhost:3030/${rfindex}`;
     const formData = {
       title,
       end_date,
@@ -64,7 +66,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
     }
   
     if (showLinkUpload) {
-      let rfpData = {
+      const rfpData = {
         date: end_date,
         writer: manager,
         rfp_id: rfindex,
@@ -205,9 +207,6 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       </Stack>)}
 
 
-      
-    
-
       {openPopup && <RFPsend openPopup={openPopup} handlePopup={handlePopup} />}
       <Grid container spacing={3} justifyContent="right">
         <Grid item xs={12} sm={2} md={5} align="right">
@@ -233,6 +232,14 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
 
     </Grid>
   );
+};
+
+
+RFPForm.propTypes = {
+  setReference: PropTypes.func.isRequired,
+  handleClosePopup: PropTypes.func.isRequired,
+  rfsetIndex: PropTypes.func.isRequired, 
+  rfindex: PropTypes.number.isRequired, 
 };
 
 export default RFPForm;

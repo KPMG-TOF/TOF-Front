@@ -52,7 +52,7 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
                   </a>
                 </TableCell>
               ) : (
-                <TableCell></TableCell>
+                <TableCell/>
               )}
 
             {row.file ? (
@@ -62,7 +62,7 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
                   </a>
                 </TableCell>
               ) : (
-                <TableCell></TableCell>
+                <TableCell/>
               )}
             </TableRow>
           ))}
