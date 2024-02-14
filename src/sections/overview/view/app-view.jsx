@@ -22,7 +22,7 @@ import RFPForm from 'src/sections/user copy/RFPForm'; // 로컬 임포트는 마
 import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
 import AppAnalysis from '../app-analysis';
-import AppNewsUpdate from '../app-news-update';
+import {AppNewsUpdate, AppNewsUpdate2} from '../app-news-update';
 
 
 
@@ -59,40 +59,7 @@ export default function AppView() {
         "rfp_id": 1,
         "size": "5453",
         "start_date": "2024-02-09T00:42:15.621547",
-        "subjects": [
-            {
-                "content": "클라우드가 필요함",
-                "id": 1,
-                "summary_id": 1
-            },
-            {
-                "content": "클라우드가 궁금함",
-                "id": 2,
-                "summary_id": 1
-            },
-            {
-                "content": "어쩌구",
-                "id": 3,
-                "summary_id": 1
-            }
-        ],
-        "requirements": [
-            {
-                "content": "보안이 필요함",
-                "id": 1,
-                "summary_id": 1
-            },
-            {
-                "content": "보안이 궁금함",
-                "id": 2,
-                "summary_id": 1
-            },
-            {
-                "content": "어쩌구",
-                "id": 3,
-                "summary_id": 1
-            }
-        ],
+        
         "subject": [
             "클라우드가 필요함",
             "클라우드가 궁금함",
@@ -110,28 +77,32 @@ export default function AppView() {
             "title": "fake ref",
             "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
-            "similarity": 29
+            "similarity": 29,
+            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
         },
         {
             "rfp_id": 6,
             "title": "fake ref",
             "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
-            "similarity": 71
+            "similarity": 71,
+            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
         },
         {
             "rfp_id": 6,
             "title": "fake ref",
             "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
-            "similarity": 47
+            "similarity": 47,
+            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
         },
         {
             "rfp_id": 5,
             "title": "fake ref",
             "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
-            "similarity": 89
+            "similarity": 89,
+            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
         }
     ],
     "tasks": {
@@ -335,7 +306,7 @@ export default function AppView() {
           </Grid>
 
           <Grid>
-            <AppNewsUpdate title="Output" list={reference} />
+            <AppNewsUpdate2 title="Output" list={reference} />
           </Grid>
 
           <Dialog open={openPopup} onClose={handlePopup} maxWidth="md">

@@ -22,7 +22,7 @@ function formatDate(dateString) {
   return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
 }
 
-export default function AppNewsUpdate({ title, subheader, list, ...other }) {
+export  function AppNewsUpdate({ title, subheader, list, ...other }) {
   return (
     <Card style={{ padding: '20px' }} {...other}>
       <CardHeader title={title} subheader={subheader} />
@@ -34,8 +34,8 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
             <TableCell>Title</TableCell>
             <TableCell>기간</TableCell>
             <TableCell>작성자</TableCell>
-            <TableCell>link</TableCell>
-            <TableCell>File Download</TableCell>
+            <TableCell>유사도</TableCell>
+            <TableCell>키워드</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -43,27 +43,12 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
             <TableRow key={index}>
               <TableCell>{index}</TableCell>
               <TableCell>{row.title}</TableCell>
-              <TableCell>{formatDate(row.end_date)}</TableCell>
+              <TableCell>{row.end_date}</TableCell>
               <TableCell>{row.manager}</TableCell>
-              {row.link ? (
-                <TableCell>
-                  <a href={row.link} target="_blank" rel="noopener noreferrer">
-                    link
-                  </a>
-                </TableCell>
-              ) : (
-                <TableCell></TableCell>
-              )}
-
-            {row.file ? (
-                <TableCell>
-                  <a href={row.file} target="_blank" rel="noopener noreferrer">
-                    Download File
-                  </a>
-                </TableCell>
-              ) : (
-                <TableCell></TableCell>
-              )}
+              <TableCell>{row.similarity}</TableCell>
+              <TableCell>{row.keyword.map((keywords, i) => (
+                <span key={i}>{keywords.join(' , ')}</span>
+              ))}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -128,4 +113,66 @@ NewsItem.propTypes = {
     name: PropTypes.string,
     num: PropTypes.string,
   }),
+};
+
+
+
+// -----------------------------------
+
+
+
+export function AppNewsUpdate2({ title, subheader, list, ...other }) {
+  return (
+    <Card style={{ padding: '20px' }} {...other}>
+      <CardHeader title={title} subheader={subheader} />
+
+      <Table>
+        <TableHead>
+          <TableRow>
+          <TableCell>NO</TableCell>
+            <TableCell>Title</TableCell>
+            <TableCell>기간</TableCell>
+            <TableCell>작성자</TableCell>
+            <TableCell>link</TableCell>
+            <TableCell>File Download</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {list.map((row, index) => (
+            <TableRow key={index}>
+              <TableCell>{index}</TableCell>
+              <TableCell>{row.title}</TableCell>
+              <TableCell>{formatDate(row.end_date)}</TableCell>
+              <TableCell>{row.manager}</TableCell>
+              {row.link ? (
+                <TableCell>
+                  <a href={row.link} target="_blank" rel="noopener noreferrer">
+                    link
+                  </a>
+                </TableCell>
+              ) : (
+                <TableCell></TableCell>
+              )}
+
+            {row.file ? (
+                <TableCell>
+                  <a href={row.file} target="_blank" rel="noopener noreferrer">
+                    Download File
+                  </a>
+                </TableCell>
+              ) : (
+                <TableCell></TableCell>
+              )}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Card>
+  );
+}
+
+AppNewsUpdate2.propTypes = {
+  title: PropTypes.string,
+  subheader: PropTypes.string,
+  list: PropTypes.array.isRequired,
 };
