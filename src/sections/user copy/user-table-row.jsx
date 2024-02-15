@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 
+
 export default function UserTableRow({  // 수정
   selected,
   no,
@@ -21,6 +22,7 @@ export default function UserTableRow({  // 수정
   status,
   link,
   handleClick,
+  handleStatusChange
 }) {
   const [open, setOpen] = useState(null);
 
@@ -30,6 +32,10 @@ export default function UserTableRow({  // 수정
 
   const handleCloseMenu = () => {
     setOpen(null);
+  };
+
+  const progressClick = (e) => {
+    handleStatusChange(name, !status); 
   };
 
   return (
@@ -52,7 +58,8 @@ export default function UserTableRow({  // 수정
         <TableCell  align="center">{date}</TableCell>
 
         <TableCell>
-          <Label color={(status ? 'success' : 'error')}>{status ? 'Complete' : 'Incomplete '}</Label> 
+          <Checkbox disableRipple checked={status} onChange={progressClick} />
+          {/* <Label color={(status ? 'success' : 'error')}>{status ? 'Complete' : 'Incomplete '}</Label>  */}
         </TableCell>
 
         <TableCell align="left">
@@ -97,4 +104,5 @@ UserTableRow.propTypes = {
   status: PropTypes.bool.isRequired,
   link: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
+  handleStatusChange: PropTypes.func.isRequired
 };
