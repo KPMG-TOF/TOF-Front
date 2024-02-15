@@ -78,14 +78,14 @@ export default function UserPage() {
     setSelected(newSelected);
   };
 
- const handleStatusChange = async (name, newStatus) => {
+ const handleStatusChange = async (no, newStatus) => {
     setrfpList((currentList) =>
       currentList.map((item) =>
-        item.name === name ? { ...item, status: newStatus } : item
+        item.no === no ? { ...item, status: newStatus } : item
       )
     );
 
-    const res = await ref_update_progress(key);
+    const res = await ref_update_progress(no);
     if (res.data.result === "success") {
       console.log("res: ", res.data.result);
     }
@@ -119,8 +119,6 @@ export default function UserPage() {
 
   const fetchrfpdump = async () => {
     try {
-      // const response = await axios.get('여기에_백엔드_API_주소');
-      // const rfpdumpData = response.data; // 가정: API 응답이 사용자 리스트를 직접 반환한다고 가정
 
       const res = await ref_list();
       if (res.data.result === "success") {
@@ -134,9 +132,9 @@ export default function UserPage() {
       //       ];
 
       const rfpdump = rfpdumpData.map(rfp => ({
-        no: rfp.id, 
-        name: rfp.name , 
-        date: rfp.upload_date, 
+        no: rfp.id,
+        name: rfp.name, 
+        date: rfp.upload_date,
         status: rfp.progress,
         link: `http://localhost:3030/rfp/${rfp.id}`
       }));

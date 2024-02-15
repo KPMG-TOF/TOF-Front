@@ -35,14 +35,14 @@ export default function UserTableRow({  // 수정
   };
 
   const progressClick = (e) => {
-    handleStatusChange(name, !status); 
+    handleStatusChange(no, !status); 
   };
 
   return (
     <>
       <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
         <TableCell padding="checkbox">
-          <Checkbox disableRipple checked={selected} onChange={() => handleClick(name)} />
+          <Checkbox disableRipple checked={selected} onChange={() => handleClick(no)} />
         </TableCell>
 
         <TableCell component="th" scope="row" padding="none">

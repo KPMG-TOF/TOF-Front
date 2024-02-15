@@ -5,7 +5,7 @@ import { Modal, Button, message, Upload } from 'antd';
 import { UploadOutlined  } from '@ant-design/icons';
 import Grid from '@mui/material/Unstable_Grid2'
 import Typography from '@mui/material/Typography';
-import { ref_file_upload } from 'src/apis/dashboard';
+import { ref_file_upload } from 'src/apis/rfplist';
 
 
 
