@@ -253,7 +253,7 @@ export default function AppView() {
             requirement={rfpData.info.title}
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
-          />x
+          />
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
