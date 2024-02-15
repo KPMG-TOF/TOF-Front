@@ -141,7 +141,7 @@ export function AppNewsUpdate2({ title, subheader, list, ...other }) {
         <TableBody>
           {list.map((row, index) => (
             <TableRow key={index}>
-              <TableCell>{index}</TableCell>
+              <TableCell>{index+1}</TableCell>
               <TableCell>{row.title}</TableCell>
               <TableCell>{formatDate(row.end_date)}</TableCell>
               <TableCell>{row.manager}</TableCell>

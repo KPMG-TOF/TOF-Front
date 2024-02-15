@@ -22,7 +22,7 @@ function formatDate(dateString) {
   return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
 }
 
-export default function AnalyticsOrderTimeline({ title, subheader, list, ...other }) {
+export default function AnalyticsOrderTimeline({ title, subheader, list, list2, ...other }) {
   return (
     <Card style={{ padding: '1em' }} {...other}>
       <CardHeader title={title} subheader={subheader} />
@@ -32,10 +32,10 @@ export default function AnalyticsOrderTimeline({ title, subheader, list, ...othe
           <Card>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                사업규모
+                회사
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {list.size}
+                {list2.company}
               </Typography>
             </CardContent>
           </Card>
