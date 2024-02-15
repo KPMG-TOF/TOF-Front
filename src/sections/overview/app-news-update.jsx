@@ -26,17 +26,26 @@ function formatDate(dateString) {
 
 export  function AppNewsUpdate({ title, subheader, list, ...other }) {
   
-const maxTitleLength = 20; 
 const background = ['#DEE5F8', '#DEE5F8','#DEE5F8']
 const color = ['#8B4513',  '#ADB74D','#3F7D6D']
+const maxTitleLength = 20; 
 
-
-  const truncateTitle = (title, maxLength) => {
-    if (title.length > maxLength) {
-      return title.substring(0, maxLength) + '...';
-    }
+function truncateTitle(title, maxLength) {
+  if (title.length <= maxLength) {
     return title;
-  };
+  } else {
+    // Truncate the title to maxTitleLength and add a newline for the remaining part
+    const truncatedTitle = title.slice(0, maxLength);
+    const remainingPart = title.slice(maxLength);
+    return (
+      <span>
+        {truncatedTitle}
+        <br />
+        {remainingPart}
+      </span>
+    );
+  }
+}
 
   return (
     <Card style={{ padding: '20px' }} {...other}>
