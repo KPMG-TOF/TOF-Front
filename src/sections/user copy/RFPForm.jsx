@@ -21,7 +21,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const [showFileUpload, setShowFileUpload] = useState(false);
   const [showLinkUpload, setShowLinkUpload] = useState(true);
   const [fileLink , setFileLink] = useState(" ");
-  const [reffile, setFile] = useState(null);
+  const [reffile, setFile] = useState("File input");
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -175,39 +175,47 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       </Stack>)}
 
     
-     {showFileUpload &&( <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
-        <div
-          style={{
-            backgroundColor: '#f0faff', // Light blue background color
-            border: '1px dashed #ccc', // Dashed border
-            borderRadius: '4px',
-            padding: '20px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            height: '200px', // Increased height
-            cursor: 'pointer',
-          }}
-        >
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label htmlFor="file-upload" style={{ width: '100%' }}>
-            <div style={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-            <span style={{ flex: '1' }}>  
+    {showFileUpload && (
+  <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
+    <div
+      style={{
+        backgroundColor: '#f0faff', // Light blue background color
+        border: '1px dashed #ccc', // Dashed border
+        borderRadius: '4px',
+        padding: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '200px', // Increased height
+        cursor: 'pointer',
+      }}
+    >
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <label htmlFor="file-upload" style={{ width: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+     
+          {reffile && (
+          <span style={{ flex: '1' }}>
             <Iconify icon="eva:file-outline" style={{ marginRight: '5px' }} />
-              Choose File
-              </span>
-            </div>
-            </label>
-          <input
-            id="file-upload"
-            type="file"
-            style={{ display: 'none' }}
-            onChange={handleFileChange}
-          />
-        </div>
+            {reffile.name} {/* Display file name or other information */}
         
-      </Stack>)}
+          </span>
+        )}  
+    
+        </div>
+      </label>
+      <input
+        id="file-upload"
+        type="file"
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
+      />
+    </div>
+  
+  </Stack>
+)}
+
 
 
       {openPopup && <RFPsend openPopup={openPopup} handlePopup={handlePopup} />}
