@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Modal, Button, message, Upload } from 'antd';
 import { UploadOutlined  } from '@ant-design/icons';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Unstable_Grid2'
 import Typography from '@mui/material/Typography';
-import { ref_analysis } from 'src/apis/dashboard';
+import { ref_file_upload } from 'src/apis/rfplist';
+
+
 
 
 const ModalContainer = styled.div`
@@ -102,10 +104,10 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
       message.warning("No file uploaded.");
       return;
     }
-    const data = { uploadfile };
+    const data = { "file": uploadfile };
 
     try {
-      const response = await ref_analysis(data);
+      const response = await ref_file_upload(data);
       if (response.data.result === "success") {
         console.log("res: ", response.data.result);
         setRfpData(response.data);

@@ -21,6 +21,7 @@ import TableEmptyRows from '../table-empty-rows';
 import UserTableToolbar from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
 import RFPpopup from '../RFP-Popup';
+import {ref_list, ref_update_progress, ref_delete_progress, ref_file_upload} from '../../../apis/rfplist';
 
 // ----------------------------------------------------------------------
 // 수정 RFP LIST
@@ -77,6 +78,20 @@ export default function UserPage() {
     setSelected(newSelected);
   };
 
+ const handleStatusChange = async (no, newStatus) => {
+    setrfpList((currentList) =>
+      currentList.map((item) =>
+        item.no === no ? { ...item, status: newStatus } : item
+      )
+    );
+
+    const res = await ref_update_progress(no);
+    if (res.data.result === "success") {
+      console.log("res: ", res.data.result);
+    }
+
+  };
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -104,24 +119,29 @@ export default function UserPage() {
 
   const fetchrfpdump = async () => {
     try {
-      // const response = await axios.get('여기에_백엔드_API_주소');
-      // const rfpdumpData = response.data; // 가정: API 응답이 사용자 리스트를 직접 반환한다고 가정
 
-      const rfpdumpData = [
-        { id: '1', name: 'RFP title1', date: '2024.04.02', status: true, link: 'testLink'},
-        { id: '2', name: 'RFP title2', date: '2024.04.08', status: true, link: 'testLink2'},
-        // 여기에 더 많은 더미 데이터 객체 추가
-            ];
+      const res = await ref_list();
+      if (res.data.result === "success") {
+        const rfpdumpData =res.data.rfp_list;
+
+      
+      // const rfpdumpData = [
+      //   { id: '1', name: 'RFP title1', upload_date: '2024.04.02', progress: true},
+      //   { id: '2', name: 'RFP title2', upload_date: '2024.04.08', progress: true},
+      //   // 여기에 더 많은 더미 데이터 객체 추가
+      //       ];
 
       const rfpdump = rfpdumpData.map(rfp => ({
-        no: rfp.id, 
-        name: rfp.name , 
-        date: rfp.date, 
-        status: rfp.status,
-        link: rfp.link, 
+        no: rfp.id,
+        name: rfp.name, 
+        date: rfp.upload_date,
+        status: rfp.progress,
+        link: `http://localhost:3030/rfp/${rfp.id}`
       }));
 
       return rfpdump;
+    }
+    return [];
     } catch (error) {
       console.error('사용자 데이터를 불러오는 데 실패했습니다.', error);
       return []; // 에러 발생 시 빈 배열 반환
@@ -196,10 +216,11 @@ export default function UserPage() {
                       no={row.no}
                       name={row.name}
                       date={row.date}
-                      status={row.status.toString()}
+                      status={row.status}
                       link={row.link}
                       selected={selected.indexOf(row.name) !== -1}
                       handleClick={(event) => handleClick(event, row.name)}
+                      handleStatusChange={handleStatusChange}
                     />
                 ))}
 

@@ -187,7 +187,7 @@ export function AppNewsUpdate2({ title, subheader, list, ...other }) {
                   </a>
                 </TableCell>
               ) : (
-                <TableCell></TableCell>
+                <TableCell/>
               )}
 
             {row.file ? (
@@ -197,7 +197,7 @@ export function AppNewsUpdate2({ title, subheader, list, ...other }) {
                   </a>
                 </TableCell>
               ) : (
-                <TableCell></TableCell>
+                <TableCell/>
               )}
             </TableRow>
           ))}
