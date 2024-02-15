@@ -33,7 +33,7 @@ export default function UserPage() {
 
   const [selected, setSelected] = useState([]);
 
-  const [orderBy, setOrderBy] = useState('name');
+  const [orderBy, setOrderBy] = useState('id');
 
   const [filterName, setFilterName] = useState('');
 
@@ -115,15 +115,22 @@ export default function UserPage() {
   
     initFetch();
   }, []);
+
+  const handlePopup = () => {
+    setOpenPopup(!openPopup);
+  };
   
 
   const fetchrfpdump = async () => {
     try {
 
+      // const res = await ref_list();
+      // if (res.data.result === "success") {
+      //   const rfpdumpData =res.data.rfp_list;
+
       const res = await ref_list();
       if (res.data.result === "success") {
         const rfpdumpData =res.data.rfp_list;
-
       
       // const rfpdumpData = [
       //   { id: '1', name: 'RFP title1', upload_date: '2024.04.02', progress: true},
@@ -133,10 +140,10 @@ export default function UserPage() {
 
       const rfpdump = rfpdumpData.map(rfp => ({
         no: rfp.id,
-        name: rfp.name, 
+        name: rfp.file, 
         date: rfp.upload_date,
         status: rfp.progress,
-        link: `http://localhost:3030/rfp/${rfp.id}`
+        link: `http://localhost:3030/rfp`
       }));
 
       return rfpdump;
@@ -154,10 +161,6 @@ export default function UserPage() {
     filterName,
   });
 
-  const handlePopup = () => {
-    setOpenPopup(false);
-  };
-
   const notFound = !dataFiltered.length && !!filterName;
 
   return (
@@ -169,17 +172,16 @@ export default function UserPage() {
           variant="contained" 
           color="inherit" 
           startIcon={<Iconify icon="eva:plus-fill" />}
-          onClick={() => setOpenPopup(true)}
+          onClick={() => {
+            console.log('Opening popup');
+            setOpenPopup(true);
+          }}
         >
           New RFP
         </Button>
       </Stack>
 
-      {openPopup ? (
        <RFPpopup openPopup={openPopup} handlePopup={handlePopup} />
-      ) : (
-        ""
-      )}
 
       <Card>
         <UserTableToolbar
