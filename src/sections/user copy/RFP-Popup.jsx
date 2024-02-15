@@ -116,6 +116,7 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
         message.warning("RFP 분석 실패. 다시 시도해주세요.");
       }
       handlePopup();
+      window.location.reload();
        
     } catch (error) {
       console.error("Error:", error);

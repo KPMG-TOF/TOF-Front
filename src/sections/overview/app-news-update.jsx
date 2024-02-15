@@ -30,21 +30,19 @@ const background = ['#DEE5F8', '#DEE5F8','#DEE5F8']
 const color = ['#8B4513',  '#ADB74D','#3F7D6D']
 const maxTitleLength = 20; 
 
-function truncateTitle(title, maxLength) {
-  if (title.length <= maxLength) {
-    return title;
-  } else {
-    // Truncate the title to maxTitleLength and add a newline for the remaining part
-    const truncatedTitle = title.slice(0, maxLength);
-    const remainingPart = title.slice(maxLength);
-    return (
-      <span>
-        {truncatedTitle}
-        <br />
-        {remainingPart}
-      </span>
-    );
+function truncateTitle(itemTitle, maxLength) {
+  if (itemTitle.length <= maxLength) {
+    return itemTitle;
   }
+  const truncatedTitle = itemTitle.slice(0, maxLength);
+  const remainingPart = itemTitle.slice(maxLength);
+  return (
+    <span>
+      {truncatedTitle}
+      <br />
+      {remainingPart}
+    </span>
+  );
 }
 
   return (
@@ -65,7 +63,7 @@ function truncateTitle(title, maxLength) {
         <TableBody>
           {list.map((row, index) => (
             <TableRow key={index}>
-              <TableCell>{index}</TableCell>
+              <TableCell>{index+1}</TableCell>
               <TableCell>{truncateTitle(row.title, maxTitleLength)}</TableCell>
               <TableCell>{row.end_date}</TableCell>
               <TableCell>{row.manager}</TableCell>

@@ -60,22 +60,32 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
             <TableBody>
               <TableRow>
                 <TableCell align='center'>1</TableCell>
-                <TableCell align='center'>클라우드 인프라 구축</TableCell>
+                <TableCell align='center'>클라우드 기반 전자결제 서비스 구성</TableCell>
                 <TableCell align='center'> </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell align='center'>2</TableCell>
-                <TableCell align='center'>오프라인 결제 서비스 운영서비스 구축</TableCell>
+                <TableCell align='center'>클라우드 서비스 안정성 확보</TableCell>
                 <TableCell align='center'> </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell align='center'>3</TableCell>
-                <TableCell align='center'>오프라인 결제 서비스 정산서비스 구축</TableCell>
+                <TableCell align='center'>국내외 클라우드 및 전자금융 관리규정 준수</TableCell>
                 <TableCell align='center'> </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell align='center'>4</TableCell>
-                <TableCell align='center'>구축 종료 후 클라우드 서비스 운영</TableCell>
+                <TableCell align='center'>서비스 운영에 대한 기술적 지원 및 추후관리</TableCell>
+                <TableCell align='center'> </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>5</TableCell>
+                <TableCell align='center'>규정 최신화에 따른 고려사항 식별 가이드 제공</TableCell>
+                <TableCell align='center'> </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>6</TableCell>
+                <TableCell align='center'>보안 위협 시나리오 및 해결방법 도출</TableCell>
                 <TableCell align='center'> </TableCell>
               </TableRow>
             </TableBody>
@@ -170,23 +180,33 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
             <TableBody>
               <TableRow>
                 <TableCell align='center'>1</TableCell>
-                <TableCell align='center'>클라우드 <br/> 인프라 구축</TableCell>
-                <TableCell align='center'>3</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align='center'>2</TableCell>
-                <TableCell align='center'>서비스 <br/> 운영 개발</TableCell>
-                <TableCell align='center'>2</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align='center'>3</TableCell>
-                <TableCell align='center'>클라우드<br/>보안</TableCell>
+                <TableCell align='center'>해외 개인정보 관련 법률 전문가</TableCell>
                 <TableCell align='center'>1</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>2</TableCell>
+                <TableCell align='center'>ISO27001/27701, ISMS-P 등의 인증심사원 자격을 지닌 개인정보 전문가</TableCell>
+                <TableCell align='center'>2</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>3</TableCell>
+                <TableCell align='center'>AWS 클라우드 아키텍처 전문가</TableCell>
+                <TableCell align='center'>2</TableCell>
               </TableRow> 
               <TableRow>
                 <TableCell align='center'>4</TableCell>
-                <TableCell align='center'>사후 관리</TableCell>
-                <TableCell align='center'>3</TableCell>
+                <TableCell align='center'>AWS 클라우드 보안 전문가</TableCell>
+                <TableCell align='center'>1</TableCell>
+              </TableRow> 
+              <TableRow>
+                <TableCell align='center'>5</TableCell>
+                <TableCell align='center'>금융권 인프라 구축 및 보안 프로젝트 경력자</TableCell>
+                <TableCell align='center'>1</TableCell>
+              </TableRow> 
+              <TableRow>
+                <TableCell align='center'>6</TableCell>
+                <TableCell align='center'>시스템 엔지니어</TableCell>
+                <TableCell align='center'>1</TableCell>
               </TableRow> 
             </TableBody>
           </Table>

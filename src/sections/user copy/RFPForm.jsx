@@ -4,10 +4,10 @@ import React, { useState,useEffect } from 'react';
 import { Grid, TextField, Button, Stack,  Radio } from '@mui/material';
 import Iconify from 'src/components/iconify';
 import PropTypes from 'prop-types';
-
+import styled from 'styled-components';
 import {linkoutput, fileoutput} from 'src/apis/dashboard'
 import {RFPsend} from './RFPSend';
-import styled from 'styled-components';
+
 
 const ModalContainer = styled.div`
   min-width: 66%;
@@ -74,7 +74,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const [showFileUpload, setShowFileUpload] = useState(true);
   const [showLinkUpload, setShowLinkUpload] = useState(false);
   const [fileLink , setFileLink] = useState(" ");
-  const [reffile, setFile] = useState(null);
+  const [reffile, setFile] = useState("File input");
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -233,102 +233,47 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       </Stack>)}
 
     
-     {showFileUpload &&( 
-     <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
-        <div
-          style={{
-            backgroundColor: '#f0faff', // Light blue background color
-            border: '1px dashed #ccc', // Dashed border
-            borderRadius: '4px',
-            padding: '20px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            height: '200px', // Increased height
-            cursor: 'pointer',
-          }}
-        >
-          <label htmlFor="file-upload" style={{ width: '100%' }}>
-            <div style={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-            <span style={{ flex: '1' }}>  
+    {showFileUpload && (
+  <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
+    <div
+      style={{
+        backgroundColor: '#f0faff', // Light blue background color
+        border: '1px dashed #ccc', // Dashed border
+        borderRadius: '4px',
+        padding: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '200px', // Increased height
+        cursor: 'pointer',
+      }}
+    >
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <label htmlFor="file-upload" style={{ width: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+     
+          {reffile && (
+          <span style={{ flex: '1' }}>
             <Iconify icon="eva:file-outline" style={{ marginRight: '5px' }} />
-              Choose File
-              </span>
-            </div>
-            </label>
-          <input
-            id="file-upload"
-            type="file"
-            style={{ display: 'none' }}
-            onChange={handleFileChange}
-          />
-        </div>
+            {reffile.name} {/* Display file name or other information */}
         
-      </Stack>)}
-{/* {
-  showFileUpload && (
-    <Modal
-      width={800}
-      title={
-        <TitleContainer>
-          RFP File Analysis
-        </TitleContainer>
-      }
-      visible={openPopup} // openPopup 상태를 visible prop으로 설정
-      onCancel={handlePopup}
-      footer={[
-        <Button
-          type="primary"
-          shape="round"
-          size="medium"
-          onClick={handleRef_analysis}
-          style={{ marginBottom: '20px' }}
-          key="optimize-button"
-        >
-          Analysis
-        </Button>,
-      ]}
-  >
-    <Grid container spacing={3} style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-    <Grid xs={12} sm={6} md={6}>
-
+          </span>
+        )}  
     
-      <Preview
-        className={`${isActive ? 'active' : ''}`}
-        onDragOver={handleDragOver}
-        onDrop={handleDrop}
-        onDragLeave={handleDragLeave}
-        onDragEnter={handleDragEnter} 
-        htmlFor="customFileUpload" 
-      >
-        
-        <FileInput // Changed from <input> for styled-component
-          id="customFileUpload"
-          onChange={handleUpload }
-          accept=".pdf"
-          multiple // Remove if you want to restrict to single file uploads
-        />
+        </div>
+      </label>
+      <input
+        id="file-upload"
+        type="file"
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
+      />
+    </div>
+  
+  </Stack>
+)}
 
-        {rfpfileinfo && <FileInfo {...rfpfileinfo} />}
-        {!rfpfileinfo && (
-          <>
-        <UploadOutlined style={{ fontSize: '32px', color: '#08c' }} />
-
-        <Typography variant="body2" sx={{ mb: 2, fontSize: '14px', color: 'grey', whiteSpace:'pre-wrap', textAlign: 'center'}}>
-          Click or drag file
-          <br />
-          to this area to upload
-        </Typography>
-        </>
-        )}
-
-      </Preview>
-    </Grid>
-          </Grid>
-  </Modal>
-  )
-} */}
 
 
       {openPopup && <RFPsend openPopup={openPopup} handlePopup={handlePopup} />}

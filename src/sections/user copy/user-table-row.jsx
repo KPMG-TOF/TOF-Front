@@ -63,7 +63,7 @@ export default function UserTableRow({  // 수정
         </TableCell>
 
         <TableCell align="left">
-          <a href={link} target="_blank" rel="noopener noreferrer">Link</a>
+          <a href={link} target="_blank" rel="noopener noreferrer">바로가기</a>
         </TableCell>
 
         <TableCell align="right">

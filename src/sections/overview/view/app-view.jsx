@@ -53,68 +53,72 @@ export default function AppView() {
     },
     "summary": {
       "start_date": "2018.12",
-      "end_date": "2019.03",
+      "end_date": "2019.3",
       "subject": [
-        "안정적인 클라우드 인프라 구축",
-        "클라우드 기반 전자결제 서비스 구성",
-        "고가용성 및 편의성을 고려한 개발 및 운영 환경 제공"
+      "안정적인 클라우드 인프라 구축",
+      "클라우드 기반 전자결제 서비스 구성",
+      "고가용성 및 편의성을 고려한 개발 및 운영 환경 제공"
       ],
       "requirement": [
-        "국제전자결제망(International Card Organizations)인 VISA 및 Master 제품군의 결제시스템 및 카드망 서비스 인프라 전반에 대한 클라우드 전환을 지원하는 서비스",
-        "KEB 하나은행의 클라우드 전환 전략 및 수행 계획에 따른 클라우드 전환을 지원하는 서비스",
-        "국내외 네트워크망 및 데이터센터에서 클라우드로 들어갑니다."
+      "국내외 네트워크망 확장 연계 고려",
+      "물리적/논리적 시스템 구성에 있어 관련 국내 감독규정 준수",
+      "인프라 리소스 및 로그 모니터링 진단 툴 제공",
+      "교육/운영지원/기술이전 등 기업 활동 지원",
+      "프로젝트 관리 및 품질보증 방안 제시",
+      "리스크 관리방안 제시"
       ]
+
     }
     ,
     "reference": [
+      {
+        "rfp_id": 4,
+        "title": "2022년 개방형 한국어 통합 사전 시스템 클라우드 전환",
+        "end_date": "계약 후~160일",
+        "manager": "박시현",
+        "keyword": [
+            "클라우드 전환",
+            "클라우드",
+            "개선"
+        ],
+        "similarity": 80.0
+    },
         {
-            "rfp_id": 5,
-            "title": "KEB 하나은행 GLN 플랫폼 구축을 위한 클라우드 서비스 제안요청서",
-            "end_date": "2024-02-09",
-            "manager": "sso",
-            "similarity": 29,
-            'keyword' :  [
-              "클라우드 전환",
-              "사업 수행",
-              "시스템 개선"
-            ],
+          "rfp_id": 3,
+          "title": "24년 사이버보안 취약점 진단사업",
+          "end_date": "계약일로부터 2024년 12월 20일까지",
+          "manager": "백승현",
+          "keyword": [
+              "프로젝트 관리",
+              "보안"
+          ],
+          "similarity": 50.0
+
         },
-        {
-            "rfp_id": 6,
-            "title": "fake ref",
-            "end_date": "2024-02-09",
-            "manager": "sso",
-            "similarity": 71,
-            'keyword' : [
-              "클라우드 전환",
-              "사업 수행",
-              "시스템 개선"
-            ],
-        },
-        {
-            "rfp_id": 6,
-            "title": "fake ref",
-            "end_date": "2024-02-09",
-            "manager": "sso",
-            "similarity": 47,
-            'keyword' :  [
-              "클라우드 전환",
-              "사업 수행",
-              "시스템 개선"
-            ],
-        },
-        {
-            "rfp_id": 5,
-            "title": "fake ref",
-            "end_date": "2024-02-09",
-            "manager": "sso",
-            "similarity": 89,
-            'keyword' :  [
-              "클라우드 전환",
-              "사업 수행",
-              "시스템 개선"
-            ],
-        }
+
+      {
+        "rfp_id": 9,
+        "title": "KTOA 인터넷 트래픽 정산 시스템 H/W구축",
+        "end_date": "계약일로부터 6개월",
+        "manager": "고서연",
+        "keyword": [
+            "네트워크",
+            "연동"
+        ],
+        "similarity": 40.0
+    },
+    {
+      "rfp_id": 10,
+      "title": "연구용 서버 취약점 보안진단 솔루션 구매",
+      "end_date": "계약 체결일로부터 3개월이내",
+      "manager": "김병권",
+      "keyword": [
+          "솔루션",
+          "시스템"
+      ],
+      "similarity": 30.0
+  }
+
     ],
     "tasks": {
         "priority": [
@@ -165,26 +169,19 @@ export default function AppView() {
   
   const [reference, setReference] = useState([
     {
-      title: "특성화 트랙 사업 제안 요청서",
+      title: "클라우드 인프라 구축 사업 계획서",
       end_date: "2022.08.29",
       manager: "이수민",
       index :"1",
       link : "http://localhost:3030/rfp/1"
     },
     {
-      title: "공학 인재 양성 사업 제안 요청서",
-      end_date: "2022.08.29",
+      title: "하나은행 RFP 사업 요약서",
+      end_date: "2022.09.15",
       manager: "이지원",
       index :"2",
       link : "http://localhost:3030/rfp/2"
-    },
-    {
-      title: "과학 중점 학교 사업 제안 요청서",
-      end_date: "2022.08.29",
-      manager: "시게타 하루아",
-      index:"3",
-      link : "http://localhost:3030/rfp/3"
-    },
+    }
   ]);
 
 
@@ -248,7 +245,7 @@ export default function AppView() {
         <Grid xs={12} sm={6} md={3}>
     
             <AppWidgetSummary
-              subject={"company"}
+              subject="company"
               requirement={rfpData.info.company}
               color="success"
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
@@ -258,7 +255,7 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            subject={"cost"}
+            subject="cost"
             requirement={rfpData.info.cost}
             color="info"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
@@ -267,7 +264,7 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            subject={"title"}
+            subject="title"
             requirement={rfpData.info.title}
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
@@ -320,7 +317,7 @@ export default function AppView() {
           </Grid>
 
           <Grid>
-            <AppNewsUpdate2 title="Output" list={reference} />
+            <AppNewsUpdate2 title="산출물" list={reference} />
           </Grid>
 
           <Dialog open={openPopup} onClose={handlePopup} maxWidth="md">

@@ -205,7 +205,7 @@ export default function UserPage() {
                   { id: 'name', label: 'Title'},
                   { id: 'date', label: '업로드 날짜', align: 'center' },
                   { id: 'status', label: '진행여부' },
-                  { id: 'link', label: '바로가기' },
+                  { id: 'link', label: '분석하기' },
                   { id: '' },
                 ]}
               />
