@@ -45,36 +45,31 @@ export default function AppView() {
 
   const [rfpData, setRfpData] = useState({
     "result": "success",
+   
     "info": {
-        "industry": "dev",
-        "title": "2024 KPMG 아이디어톤 제안서_TOF.pdf",
-        "company": "sso",
-        "rfp_id": 1,
-        "id": 1,
-        "cost": 12342
+      "company": "KEB 하나은행",
+      "cost": "제안사 제안 가격",
+      "title": "KEB 하나은행 GLN(Global Loyalty Nework) 플랫폼 구축을 위한 클라우드 서비스 제안요청서"
     },
     "summary": {
-        "end_date": "2024-02-09T00:42:15.621547",
-        "id": 1,
-        "rfp_id": 1,
-        "size": "5453",
-        "start_date": "2024-02-09T00:42:15.621547",
-        
-        "subject": [
-            "클라우드가 필요함",
-            "클라우드가 궁금함",
-            "어쩌구"
-        ],
-        "requirement": [
-            "보안이 필요함",
-            "보안이 궁금함",
-            "어쩌구"
-        ]
-    },
+      "start_date": "2018.12",
+      "end_date": "2019.03",
+      "subject": [
+        "안정적인 클라우드 인프라 구축",
+        "클라우드 기반 전자결제 서비스 구성",
+        "고가용성 및 편의성을 고려한 개발 및 운영 환경 제공"
+      ],
+      "requirement": [
+        "국제전자결제망(International Card Organizations)인 VISA 및 Master 제품군의 결제시스템 및 카드망 서비스 인프라 전반에 대한 클라우드 전환을 지원하는 서비스",
+        "KEB 하나은행의 클라우드 전환 전략 및 수행 계획에 따른 클라우드 전환을 지원하는 서비스",
+        "국내외 네트워크망 및 데이터센터에서 클라우드로 들어갑니다."
+      ]
+    }
+    ,
     "reference": [
         {
             "rfp_id": 5,
-            "title": "fake ref",
+            "title": "KEB 하나은행 GLN(Global Loyalty Nework) 플랫폼 구축을 위한 클라우드 서비스 제안요청서",
             "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
             "similarity": 29,
@@ -236,8 +231,8 @@ export default function AppView() {
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            subject={rfpData.summary.subject[0]}
-            requirement={rfpData.summary.requirement[0]}
+            subject={"company"}
+            requirement={rfpData.info.company}
             color="success"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
           />
@@ -245,8 +240,8 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            subject={rfpData.summary.subject[1]}
-            requirement={rfpData.summary.requirement[1]}
+            subject={"cost"}
+            requirement={rfpData.info.cost}
             color="info"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
           />
@@ -254,17 +249,17 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            subject={rfpData.summary.subject[2]}
-            requirement={rfpData.summary.requirement[2]}
+            subject={"title"}
+            requirement={rfpData.info.title}
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
-          />
+          />x
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            subject="RFP Name"
-            requirement="이 부분 지금 하드코딩"
+            subject="start_date"
+            requirement={rfpData.summary.start_date}
             color="error"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
           />
@@ -274,12 +269,13 @@ export default function AppView() {
           <AppOrderTimeline
             title="RFP Summary"
             list={rfpData.summary}
+            list2 = {rfpData.info}
           />
         </Grid>
 
         <Grid xs={12} md={6} lg={8}>
           <AppNewsUpdate
-            title="Reference"
+            title="Similarity"
             list={rfpData.reference}
           />
         </Grid>

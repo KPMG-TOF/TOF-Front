@@ -51,9 +51,7 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
                 <TableCell>
                   <Typography variant="body1" fontWeight="bold">
                     <br/>
-                    <Box marginBottom={1}> 
-                        <CardHeader align='center' subheader="     "/>
-                    </Box>
+                  
                   </Typography>
                 </TableCell>
             
@@ -63,6 +61,21 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
               <TableRow>
                 <TableCell align='center'>1</TableCell>
                 <TableCell align='center'>클라우드 인프라 구축</TableCell>
+                <TableCell align='center'> </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>2</TableCell>
+                <TableCell align='center'>오프라인 결제 서비스 운영서비스 구축</TableCell>
+                <TableCell align='center'> </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>3</TableCell>
+                <TableCell align='center'>오프라인 결제 서비스 정산서비스 구축</TableCell>
+                <TableCell align='center'> </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>4</TableCell>
+                <TableCell align='center'>구축 종료 후 클라우드 서비스 운영</TableCell>
                 <TableCell align='center'> </TableCell>
               </TableRow>
             </TableBody>
@@ -93,9 +106,7 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
                 <TableCell>
                   <Typography variant="body1" fontWeight="bold">
                     <br/>
-                    <Box marginBottom={1}> 
-                        <CardHeader align='center' subheader="     "/>
-                    </Box>
+                   
                   </Typography>
                 </TableCell>
             
@@ -104,7 +115,22 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
             <TableBody>
               <TableRow>
                 <TableCell align='center'>1</TableCell>
-                <TableCell align='center'>클라우드 인프라 구축 상위 2%</TableCell>
+                <TableCell align='center'>클라우드 <br/>인프라 구축 상위 2%</TableCell>
+                <TableCell align='center'> </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>2</TableCell>
+                <TableCell align='center'>IT 컨설팅 경험</TableCell>
+                <TableCell align='center'> </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>3</TableCell>
+                <TableCell align='center'>금융 기업 관련 클라우드 전산망 구축</TableCell>
+                <TableCell align='center'> </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>4</TableCell>
+                <TableCell align='center'>테스트배드 구축</TableCell>
                 <TableCell align='center'> </TableCell>
               </TableRow>
             </TableBody>
@@ -127,7 +153,7 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
                   <Typography variant="body1" fontWeight="bold">
                     <br/>
                     <Box marginBottom={1}> 
-                        <CardHeader align='center' subheader="분야"/>
+                        <CardHeader align='center' subheader="TITLE"/>
                     </Box>
                   </Typography>
                 </TableCell>
@@ -135,7 +161,7 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
                   <Typography variant="body1" fontWeight="bold">
                     <br/>
                     <Box marginBottom={1}> 
-                        <CardHeader align='center'subheader="인원"/>
+                        <CardHeader align='center'subheader="PEOPLE"/>
                     </Box>
                   </Typography>
                 </TableCell>
@@ -144,9 +170,24 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
             <TableBody>
               <TableRow>
                 <TableCell align='center'>1</TableCell>
-                <TableCell align='center'>클라우드 인프라 구축</TableCell>
+                <TableCell align='center'>클라우드 <br/> 인프라 구축</TableCell>
                 <TableCell align='center'>3</TableCell>
               </TableRow>
+              <TableRow>
+                <TableCell align='center'>2</TableCell>
+                <TableCell align='center'>서비스 <br/> 운영 개발</TableCell>
+                <TableCell align='center'>2</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align='center'>3</TableCell>
+                <TableCell align='center'>클라우드<br/>보안</TableCell>
+                <TableCell align='center'>1</TableCell>
+              </TableRow> 
+              <TableRow>
+                <TableCell align='center'>4</TableCell>
+                <TableCell align='center'>사후 관리</TableCell>
+                <TableCell align='center'>3</TableCell>
+              </TableRow> 
             </TableBody>
           </Table>
         </Grid>
