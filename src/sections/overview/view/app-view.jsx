@@ -73,7 +73,11 @@ export default function AppView() {
             "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
             "similarity": 29,
-            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
+            'keyword' :  [
+              "클라우드 전환",
+              "사업 수행",
+              "시스템 개선"
+            ],
         },
         {
             "rfp_id": 6,
@@ -81,7 +85,11 @@ export default function AppView() {
             "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
             "similarity": 71,
-            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
+            'keyword' : [
+              "클라우드 전환",
+              "사업 수행",
+              "시스템 개선"
+            ],
         },
         {
             "rfp_id": 6,
@@ -89,7 +97,11 @@ export default function AppView() {
             "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
             "similarity": 47,
-            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
+            'keyword' :  [
+              "클라우드 전환",
+              "사업 수행",
+              "시스템 개선"
+            ],
         },
         {
             "rfp_id": 5,
@@ -97,7 +109,11 @@ export default function AppView() {
             "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
             "similarity": 89,
-            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
+            'keyword' :  [
+              "클라우드 전환",
+              "사업 수행",
+              "시스템 개선"
+            ],
         }
     ],
     "tasks": {
