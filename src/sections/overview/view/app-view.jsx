@@ -69,35 +69,51 @@ export default function AppView() {
     "reference": [
         {
             "rfp_id": 5,
-            "title": "KEB 하나은행 GLN(Global Loyalty Nework) 플랫폼 구축을 위한 클라우드 서비스 제안요청서",
-            "end_date": "2024-02-09T00:56:40.954433",
+            "title": "KEB 하나은행 GLN 플랫폼 구축을 위한 클라우드 서비스 제안요청서",
+            "end_date": "2024-02-09",
             "manager": "sso",
             "similarity": 29,
-            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
+            'keyword' :  [
+              "클라우드 전환",
+              "사업 수행",
+              "시스템 개선"
+            ],
         },
         {
             "rfp_id": 6,
             "title": "fake ref",
-            "end_date": "2024-02-09T00:56:40.954433",
+            "end_date": "2024-02-09",
             "manager": "sso",
             "similarity": 71,
-            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
+            'keyword' : [
+              "클라우드 전환",
+              "사업 수행",
+              "시스템 개선"
+            ],
         },
         {
             "rfp_id": 6,
             "title": "fake ref",
-            "end_date": "2024-02-09T00:56:40.954433",
+            "end_date": "2024-02-09",
             "manager": "sso",
             "similarity": 47,
-            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
+            'keyword' :  [
+              "클라우드 전환",
+              "사업 수행",
+              "시스템 개선"
+            ],
         },
         {
             "rfp_id": 5,
             "title": "fake ref",
-            "end_date": "2024-02-09T00:56:40.954433",
+            "end_date": "2024-02-09",
             "manager": "sso",
             "similarity": 89,
-            'keyword' : [['클라우드 전환','시스템 개선','한국어기초사전'],['클라우드 인프라 구축', '전자결제 서비스','고가용성']]
+            'keyword' :  [
+              "클라우드 전환",
+              "사업 수행",
+              "시스템 개선"
+            ],
         }
     ],
     "tasks": {
@@ -230,12 +246,14 @@ export default function AppView() {
       {/* {rfpData ? ( */}
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={3}>
-          <AppWidgetSummary
-            subject={"company"}
-            requirement={rfpData.info.company}
-            color="success"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
-          />
+    
+            <AppWidgetSummary
+              subject={"company"}
+              requirement={rfpData.info.company}
+              color="success"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+            />
+    
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
@@ -265,7 +283,7 @@ export default function AppView() {
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={4}>
+        <Grid xs={12} md={4} lg={4}>
           <AppOrderTimeline
             title="RFP Summary"
             list={rfpData.summary}
@@ -273,7 +291,7 @@ export default function AppView() {
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={8}>
+        <Grid xs={12} md={8} lg={8}>
           <AppNewsUpdate
             title="Similarity"
             list={rfpData.reference}

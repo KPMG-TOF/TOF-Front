@@ -15,6 +15,8 @@ import { fToNow } from 'src/utils/format-time';
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 
+
+
 // ----------------------------------------------------------------------
 
 function formatDate(dateString) {
@@ -23,9 +25,31 @@ function formatDate(dateString) {
 }
 
 export  function AppNewsUpdate({ title, subheader, list, ...other }) {
+  
+const background = ['#DEE5F8', '#DEE5F8','#DEE5F8']
+const color = ['#8B4513',  '#ADB74D','#3F7D6D']
+const maxTitleLength = 20; 
+
+function truncateTitle(title, maxLength) {
+  if (title.length <= maxLength) {
+    return title;
+  } else {
+    // Truncate the title to maxTitleLength and add a newline for the remaining part
+    const truncatedTitle = title.slice(0, maxLength);
+    const remainingPart = title.slice(maxLength);
+    return (
+      <span>
+        {truncatedTitle}
+        <br />
+        {remainingPart}
+      </span>
+    );
+  }
+}
+
   return (
     <Card style={{ padding: '20px' }} {...other}>
-      <CardHeader title={title} subheader={subheader} />
+    <CardHeader title={title} subheader={subheader} />
 
       <Table>
         <TableHead>
@@ -42,14 +66,25 @@ export  function AppNewsUpdate({ title, subheader, list, ...other }) {
           {list.map((row, index) => (
             <TableRow key={index}>
               <TableCell>{index}</TableCell>
-              <TableCell>{row.title}</TableCell>
+              <TableCell>{truncateTitle(row.title, maxTitleLength)}</TableCell>
               <TableCell>{row.end_date}</TableCell>
               <TableCell>{row.manager}</TableCell>
               <TableCell>{row.similarity}</TableCell>
-              <TableCell>{row.keyword.map((keywords, i) => (
-                <span key={i}>{keywords.join(' , ')}</span>
-              ))}</TableCell>
-
+              <TableCell>
+                {row.keyword.map((keyword, keywordIndex) => (
+                 <div key={keywordIndex} 
+                 style={{
+                  backgroundColor: background[keywordIndex], // Light lantern background color
+                  padding: '5px',
+                  borderRadius: '5px',
+                  margin: '5px',
+                  textAlign: 'center',  // Center-align text
+                  color: '#1841C6',     // Dark lantern text color
+                }}>
+                 {keyword}
+               </div>
+                ))}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

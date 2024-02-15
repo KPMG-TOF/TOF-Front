@@ -25,7 +25,7 @@ export default function AppWidgetSummary({ subject, requirement, icon, color = '
           {subject}
         </Typography>
 
-        <Typography fontSize="0.9em" fontWeight="bold">{requirement}</Typography>
+        <Typography fontSize="0.9em" fontWeight="bold" sx={{ height: '60px' }}>{requirement}</Typography>
       </Stack>
       {icon && <Box sx={{ width: 64, height: 64 }}>{icon}</Box>}
     </Card>

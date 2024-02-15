@@ -34,7 +34,7 @@ export default function AnalyticsOrderTimeline({ title, subheader, list, list2, 
               <Typography gutterBottom variant="h5" component="div">
                 회사
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="text.secondary" style={{ fontSize: '1em' }}>
                 {list2.company}
               </Typography>
             </CardContent>
@@ -47,7 +47,7 @@ export default function AnalyticsOrderTimeline({ title, subheader, list, list2, 
               <Typography gutterBottom variant="h5" component="div">
                 사업기간
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="text.secondary" style={{ fontSize: '1em' }}>
                 {formatDate(list.start_date)}-{formatDate(list.end_date)}
               </Typography>
             </CardContent>
@@ -60,10 +60,12 @@ export default function AnalyticsOrderTimeline({ title, subheader, list, list2, 
               <Typography gutterBottom variant="h5" component="div">
                 주제
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {list.subject.map((row, index) => (
-                  row
-                ))}
+              <Typography variant="body2" color="text.secondary" style={{ fontSize: '1em' }}>
+              {list.subject.map((row, index) => (
+                <div key={index}>
+                  {row}
+                </div>
+              ))}
               </Typography>
             </CardContent>
           </Card>
@@ -75,10 +77,12 @@ export default function AnalyticsOrderTimeline({ title, subheader, list, list2, 
               <Typography gutterBottom variant="h5" component="div">
                 요구사항
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {list.requirement.map((row, index) => (
-                  row
-                ))}
+              <Typography variant="body2" color="text.secondary" style={{ fontSize: '1em' }}>
+              {list.requirement.map((row, index, array) => (
+                <div key={index} style={{ marginBottom: '10px' }}>
+                  {index + 1}. {row}
+                </div>
+              ))}
               </Typography>
             </CardContent>
           </Card>
