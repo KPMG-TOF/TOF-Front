@@ -21,6 +21,12 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const [showFileUpload, setShowFileUpload] = useState(false);
   const [showLinkUpload, setShowLinkUpload] = useState(true);
   const [fileLink , setFileLink] = useState(" ");
+  const [reffile, setFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+  };
 
   const handleFileUploadClick = () => {
     setShowFileUpload(!showFileUpload);
@@ -53,7 +59,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
     if (showFileUpload) {
       const fileInput = document.getElementById('file-upload');
       const rfpData = {
-        file: fileInput ? fileInput.files[0] : null,
+        file: reffile,
         date: end_date,
         writer: manager,
         rfp_id: rfindex,
@@ -61,7 +67,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       
       formData.file = fileLink
 
-      
+      console.log('RFP Data:', rfpData);
       fileoutput(rfpData);
     }
   
@@ -79,7 +85,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   
       linkoutput(rfpData);
     }
-    console.log('Form Data:', formData);
+    console.log("file",reffile)
     setReference((prevReference) => [...prevReference, formData]);
     rfsetIndex((prevIndex) => prevIndex + 1);
     handleClosePopup();
@@ -160,7 +166,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
                 borderRadius: '4px',
                 width:'100%',
               }}
-              onChange={(e) => setFileLink(e.target.value)}
+              onChange={(e) => setFileLink("/uploads/RFP1.hwp")}
             />
           </div>
         </label>  
@@ -197,10 +203,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
             id="file-upload"
             type="file"
             style={{ display: 'none' }}
-            onChange={(e) => {
-              const file = e.target.files[0];
-              // Handle file upload logic here
-            }}
+            onChange={handleFileChange}
           />
         </div>
         
