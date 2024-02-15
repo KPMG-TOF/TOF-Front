@@ -82,7 +82,7 @@ export default function AppView() {
         {
             "rfp_id": 6,
             "title": "fake ref",
-            "end_date": "2024-02-09",
+            "end_date": "2024-02-",
             "manager": "sso",
             "similarity": 71,
             'keyword' : [
@@ -94,7 +94,7 @@ export default function AppView() {
         {
             "rfp_id": 6,
             "title": "fake ref",
-            "end_date": "2024-02-09",
+            "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
             "similarity": 47,
             'keyword' :  [
@@ -106,7 +106,7 @@ export default function AppView() {
         {
             "rfp_id": 5,
             "title": "fake ref",
-            "end_date": "2024-02-09",
+            "end_date": "2024-02-09T00:56:40.954433",
             "manager": "sso",
             "similarity": 89,
             'keyword' :  [
