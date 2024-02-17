@@ -132,3 +132,17 @@ OrderItem.propTypes = {
   item: PropTypes.object,
   lastTimeline: PropTypes.bool,
 };
+
+AnalyticsOrderTimeline.propTypes = {
+  title: PropTypes.string,
+  subheader: PropTypes.string,
+  list: PropTypes.shape({
+    start_date: PropTypes.string,
+    end_date: PropTypes.string,
+    subject: PropTypes.arrayOf(PropTypes.string),
+    requirement: PropTypes.arrayOf(PropTypes.string),
+  }),
+  list2: PropTypes.shape({
+    company: PropTypes.string,
+  }),
+};

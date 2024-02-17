@@ -23,8 +23,7 @@ import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
 import AppAnalysis from '../app-analysis';
 import {AppNewsUpdate, AppNewsUpdate2} from '../app-news-update';
-
-
+import {referenceData, rfpDataAll} from '/src/data/reference';
 
 
 // import { Content } from 'antd/es/layout/layout'; 
@@ -43,149 +42,9 @@ export default function AppView() {
   const [manager, setManager] = useState('');
   const [rfindex, rfsetIndex] = useState(4); // Initialize index state with 1
 
-  const [rfpData, setRfpData] = useState({
-    "result": "success",
-   
-    "info": {
-      "company": "KEB 하나은행",
-      "cost": "제안사 제안 가격",
-      "title": "KEB 하나은행 GLN(Global Loyalty Nework) 플랫폼 구축을 위한 클라우드 서비스 제안요청서"
-    },
-    "summary": {
-      "start_date": "2018.12",
-      "end_date": "2019.03",
-      "subject": [
-        "안정적인 클라우드 인프라 구축",
-        "클라우드 기반 전자결제 서비스 구성",
-        "고가용성 및 편의성을 고려한 개발 및 운영 환경 제공"
-      ],
-      "requirement": [
-        "국제전자결제망(International Card Organizations)인 VISA 및 Master 제품군의 결제시스템 및 카드망 서비스 인프라 전반에 대한 클라우드 전환을 지원하는 서비스",
-        "KEB 하나은행의 클라우드 전환 전략 및 수행 계획에 따른 클라우드 전환을 지원하는 서비스",
-        "국내외 네트워크망 및 데이터센터에서 클라우드로 들어갑니다."
-      ]
-    }
-    ,
-    "reference": [
-        {
-            "rfp_id": 5,
-            "title": "KEB 하나은행 GLN 플랫폼 구축을 위한 클라우드 서비스 제안요청서",
-            "end_date": "2024-02-09",
-            "manager": "sso",
-            "similarity": 29,
-            'keyword' :  [
-              "클라우드 전환",
-              "사업 수행",
-              "시스템 개선"
-            ],
-        },
-        {
-            "rfp_id": 6,
-            "title": "fake ref",
-            "end_date": "2024-02-",
-            "manager": "sso",
-            "similarity": 71,
-            'keyword' : [
-              "클라우드 전환",
-              "사업 수행",
-              "시스템 개선"
-            ],
-        },
-        {
-            "rfp_id": 6,
-            "title": "fake ref",
-            "end_date": "2024-02-09T00:56:40.954433",
-            "manager": "sso",
-            "similarity": 47,
-            'keyword' :  [
-              "클라우드 전환",
-              "사업 수행",
-              "시스템 개선"
-            ],
-        },
-        {
-            "rfp_id": 5,
-            "title": "fake ref",
-            "end_date": "2024-02-09T00:56:40.954433",
-            "manager": "sso",
-            "similarity": 89,
-            'keyword' :  [
-              "클라우드 전환",
-              "사업 수행",
-              "시스템 개선"
-            ],
-        }
-    ],
-    "tasks": {
-        "priority": [
-            {
-                "order": 15,
-                "title": "priority"
-            },
-            {
-                "order": 6,
-                "title": "priority"
-            }
-        ],
-        "competivity": [
-            {
-                "order": 246,
-                "title": "competivity"
-            },
-            {
-                "order": 918,
-                "title": "competivity"
-            },
-            {
-                "order": 784,
-                "title": "competivity"
-            },
-            {
-                "order": 465,
-                "title": "competivity"
-            }
-        ],
-        "workforce": [
-            {
-                "count": 734,
-                "category": "workforce"
-            },
-            {
-                "count": 595,
-                "category": "workforce"
-            },
-            {
-                "count": 973,
-                "category": "workforce"
-            }
-        ]
-    }
-});
-
+  const [rfpData, setRfpData] = useState(rfpDataAll);
   
-  const [reference, setReference] = useState([
-    {
-      title: "특성화 트랙 사업 제안 요청서",
-      end_date: "2022.08.29",
-      manager: "이수민",
-      index :"1",
-      link : "http://localhost:3030/rfp/1"
-    },
-    {
-      title: "공학 인재 양성 사업 제안 요청서",
-      end_date: "2022.08.29",
-      manager: "이지원",
-      index :"2",
-      link : "http://localhost:3030/rfp/2"
-    },
-    {
-      title: "과학 중점 학교 사업 제안 요청서",
-      end_date: "2022.08.29",
-      manager: "시게타 하루아",
-      index:"3",
-      link : "http://localhost:3030/rfp/3"
-    },
-  ]);
+  const [reference, setReference] = useState(referenceData);
 
 
   const props = {
@@ -248,7 +107,7 @@ export default function AppView() {
         <Grid xs={12} sm={6} md={3}>
     
             <AppWidgetSummary
-              subject={"company"}
+              subject="company"
               requirement={rfpData.info.company}
               color="success"
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
@@ -258,7 +117,7 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            subject={"cost"}
+            subject="cost"
             requirement={rfpData.info.cost}
             color="info"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
@@ -267,12 +126,11 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            subject={"title"}
+            subject="title"
             requirement={rfpData.info.title}
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
           />
-    
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
@@ -316,16 +174,16 @@ export default function AppView() {
               startIcon={<Iconify icon="eva:plus-fill" />}
               onClick={handlePopup} // Open the Dialog when the button is clicked
             >
-              Add Reference
+              산출물 등록하기
             </Button>
           </Grid>
 
           <Grid>
-            <AppNewsUpdate2 title="Output" list={reference} />
+            <AppNewsUpdate2 title="산출물" list={reference} />
           </Grid>
 
           <Dialog open={openPopup} onClose={handlePopup} maxWidth="md">
-            <DialogTitle>Add New Reference</DialogTitle>
+            <DialogTitle>산출물 등록하기</DialogTitle>
             <DialogContent>
               <RFPForm setReference={setReference} handleClosePopup={handlePopup} rfsetIndex={rfsetIndex} rfindex={rfindex}/>
           
@@ -334,53 +192,7 @@ export default function AppView() {
         </Grid>
        
 
-
-        {/* <Grid xs={12} md={6} lg={4}>
-          <AppTrafficBySite
-            title="Traffic by Site"
-            list={[
-              {
-                name: 'FaceBook',
-                value: 323234,
-                icon: <Iconify icon="eva:facebook-fill" color="#1877F2" width={32} />,
-              },
-              {
-                name: 'Google',
-                value: 341212,
-                icon: <Iconify icon="eva:google-fill" color="#DF3E30" width={32} />,
-              },
-              {
-                name: 'Linkedin',
-                value: 411213,
-                icon: <Iconify icon="eva:linkedin-fill" color="#006097" width={32} />,
-              },
-              {
-                name: 'Twitter',
-                value: 443232,
-                icon: <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={32} />,
-              },
-            ]}
-          />
-            </Grid> */}
-
           </Grid>
-          {/* ) : (
-        <Grid container spacing={3} style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-          <Grid xs={12} sm={6} md={6}>
-            <Dragger {...props}>
-              <p className="ant-upload-drag-icon">
-                <InboxOutlined />
-              </p>
-              <p className="ant-upload-text">Click or drag file to this area to upload</p>
-              <p className="ant-upload-hint">
-                Support for a single or bulk upload. Strictly prohibited from uploading company data or other banned
-                files.
-              </p>
-            </Dragger>
-            <button type="button" onClick={handleRef_analysis}>분석하기</button>
-          </Grid>
-        </Grid>
-      )} */}
     </Container>
   );
 }

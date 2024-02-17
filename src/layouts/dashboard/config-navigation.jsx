@@ -14,11 +14,11 @@ const navConfig = [
     path: '/',
     icon: icon('ic_analytics'),
   },
-  {
-    title: 'RFP DashBoard',
-    path: '/rfp',
-    icon: icon('ic_analytics'),
-  },
+  // {
+  //   title: 'RFP DashBoard',
+  //   path: '/rfp',
+  //   icon: icon('ic_analytics'),
+  // },
   {
     title: 'Document',
     path: '/products',
@@ -28,12 +28,12 @@ const navConfig = [
     title: 'Document History',
     path: '/blog',
     icon: icon('ic_blog'),
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
-  },
+  }
+  // {
+  //   title: 'Not found',
+  //   path: '/404',
+  //   icon: icon('ic_disabled'),
+  // },
 ];
 
 export default navConfig;

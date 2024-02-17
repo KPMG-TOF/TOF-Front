@@ -10,9 +10,9 @@ export const ref_list = async () => {// rfp 조회
     }
 }
     
-export const ref_update_progress = async (ref_id) => { // rfp 진행상황 삭제
+export const ref_update_progress = async (rfp_id) => { // rfp 진행상황 삭제
     try {
-    const response = api.post(`/api/v1/rfp/update/progres`,ref_id);
+    const response = api.get(`/api/v1/rfp/update/progress/${rfp_id}`);
     return response;
     } catch (error) {
         console.error("getDiagramData 오류:", error);
@@ -20,9 +20,9 @@ export const ref_update_progress = async (ref_id) => { // rfp 진행상황 삭�
     }
 }
 
-export const ref_delete_progress = async (ref_id) => { // rfp 진행상황 삭제
+export const ref_delete_progress = async (rfp_id) => { // rfp 진행상황 삭제
     try {
-    const response = api.post(`/api/v1/rfp/delete`, ref_id);
+    const response = api.get(`/api/v1/rfp/delete/${rfp_id}`, );
     return response;
     } catch (error) {
         console.error("getDiagramData 오류:", error);

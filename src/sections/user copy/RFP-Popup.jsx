@@ -105,16 +105,19 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
       return;
     }
     const data = { "file": uploadfile };
-
     try {
       const response = await ref_file_upload(data);
       if (response.data.result === "success") {
         console.log("res: ", response.data.result);
         setRfpData(response.data);
         message.success("RFP 분석 성공.");
+        
       } else {
         message.warning("RFP 분석 실패. 다시 시도해주세요.");
       }
+      handlePopup();
+      window.location.reload();
+       
     } catch (error) {
       console.error("Error:", error);
     }
@@ -150,12 +153,12 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
     setFileInfo(file);
   };
 
-
-
   
 
   return (
+    
     <>
+    {openPopup && 
       <ModalContainer>
         <Modal
           width={800}
@@ -217,7 +220,9 @@ const RFPpopup = ({ handlePopup, openPopup }) => {
               </Grid>
       </Modal>
       </ModalContainer>
+       }
     </>
+          
   );
 };
 

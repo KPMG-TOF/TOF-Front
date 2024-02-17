@@ -1,14 +1,67 @@
 // RFPForm.js
 
 import React, { useState,useEffect } from 'react';
-import { Grid, TextField, Button, Stack, Checkbox } from '@mui/material';
+import { Grid, TextField, Button, Stack,  Radio } from '@mui/material';
 import Iconify from 'src/components/iconify';
 import PropTypes from 'prop-types';
-
+import styled from 'styled-components';
 import {linkoutput, fileoutput} from 'src/apis/dashboard'
 import {RFPsend} from './RFPSend';
 
 
+const ModalContainer = styled.div`
+  min-width: 66%;
+  min-height: 63%;
+  left: calc(50% - (66% / 2));
+  top: calc(50% - (63% / 2));
+  position: fixed;
+  z-index: 100;
+`;
+
+
+const TitleContainer = styled.div`
+  width: 100%;
+  cursor: move;
+`;
+
+
+const FileInput = styled.input.attrs({ type: 'file' })`
+  display: none;
+
+  &::file-selector-button {
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #08c;
+    border-radius: 12px;
+    padding: 24px 32px;
+    cursor: pointer;
+  }
+`;
+
+const Preview = styled.label`
+  width: 350px;
+  height: 160px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 3px dashed #eee;
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 101;
+
+  &:hover {
+    border-color: #08c;
+  }
+
+  &.active {
+    background-color: #efeef3;
+    border-color: #08c;
+  }
+`;
 
 const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const currentDate = new Date();
@@ -18,8 +71,8 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
   const [end_date, setEndDate] = useState(formattedDate);
   const [manager, setManager] = useState('Writer');
   const [openPopup, setOpenPopup] = useState(false);
-  const [showFileUpload, setShowFileUpload] = useState(false);
-  const [showLinkUpload, setShowLinkUpload] = useState(true);
+  const [showFileUpload, setShowFileUpload] = useState(true);
+  const [showLinkUpload, setShowLinkUpload] = useState(false);
   const [fileLink , setFileLink] = useState(" ");
   const [reffile, setFile] = useState("File input");
 
@@ -97,7 +150,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
      <Grid container spacing={2} justifyContent="center">
       <Grid item xs={12} sm={6} >
         <TextField
-          label="Output Title"
+          label="산출물 제목"
           fullWidth
           margin="normal"
           value={title}
@@ -106,7 +159,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       </Grid>
       <Grid item xs={12} sm={3}>
         <TextField
-          label="Date"
+          label="날짜"
           fullWidth
           margin="normal"
           value={end_date}
@@ -115,7 +168,7 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       </Grid>
       <Grid item xs={12} sm={3}>
         <TextField
-          label="Writer"
+          label="작성자"
           fullWidth
           margin="normal"
           value={manager}
@@ -126,16 +179,21 @@ const RFPForm = ({ setReference , handleClosePopup, rfsetIndex, rfindex}) => {
       </Grid>
 
       {/* Checkbox */}
-      <Checkbox
-          onChange={handleLinkUpload}
-          checked={showLinkUpload}
-      />
-      Link
-      <Checkbox    
+      <Radio    
           onChange={handleFileUploadClick}
           checked={showFileUpload}
+          name="radio-buttons"
+
       />
      File Upload
+      <Radio
+          onChange={handleLinkUpload}
+          checked={showLinkUpload}
+          name="radio-buttons"
+
+      />
+      Link
+
 
      {showLinkUpload &&( <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
         <div
