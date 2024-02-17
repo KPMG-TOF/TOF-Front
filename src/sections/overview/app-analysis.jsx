@@ -13,7 +13,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 // AppAnalysis.js
 
-import { priorityData, competitivenessData, workforceData } from '/src/data/reference'; // Adjust the path accordingly
+import { priorityData, competitivenessData, workforceData } from 'src/data/reference'; // Adjust the path accordingly
 
 export default function AppAnalysis({ title, subheader, list, ...other }) {
   return (

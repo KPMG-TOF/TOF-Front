@@ -16,14 +16,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 
 import { ref_analysis } from 'src/apis/dashboard';
-
+import {referenceData, rfpDataAll} from 'src/data/reference';
 import Iconify from 'src/components/iconify';
 import RFPForm from 'src/sections/user copy/RFPForm'; // 로컬 임포트는 마지막에 위치하도록 조정
 import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
 import AppAnalysis from '../app-analysis';
 import {AppNewsUpdate, AppNewsUpdate2} from '../app-news-update';
-import {referenceData, rfpDataAll} from '/src/data/reference';
+
 
 
 // import { Content } from 'antd/es/layout/layout'; 
