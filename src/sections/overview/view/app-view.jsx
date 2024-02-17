@@ -23,8 +23,7 @@ import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
 import AppAnalysis from '../app-analysis';
 import {AppNewsUpdate, AppNewsUpdate2} from '../app-news-update';
-
-
+import {referenceData, rfpDataAll} from '/src/data/reference';
 
 
 // import { Content } from 'antd/es/layout/layout'; 
@@ -43,146 +42,9 @@ export default function AppView() {
   const [manager, setManager] = useState('');
   const [rfindex, rfsetIndex] = useState(4); // Initialize index state with 1
 
-  const [rfpData, setRfpData] = useState({
-    "result": "success",
-   
-    "info": {
-      "company": "KEB 하나은행",
-      "cost": "제안사 제안 가격",
-      "title": "KEB 하나은행 GLN(Global Loyalty Nework) 플랫폼 구축을 위한 클라우드 서비스 제안요청서"
-    },
-    "summary": {
-      "start_date": "2018.12",
-      "end_date": "2019.3",
-      "subject": [
-      "안정적인 클라우드 인프라 구축",
-      "클라우드 기반 전자결제 서비스 구성",
-      "고가용성 및 편의성을 고려한 개발 및 운영 환경 제공"
-      ],
-      "requirement": [
-      "국내외 네트워크망 확장 연계 고려",
-      "물리적/논리적 시스템 구성에 있어 관련 국내 감독규정 준수",
-      "인프라 리소스 및 로그 모니터링 진단 툴 제공",
-      "교육/운영지원/기술이전 등 기업 활동 지원",
-      "프로젝트 관리 및 품질보증 방안 제시",
-      "리스크 관리방안 제시"
-      ]
-
-    }
-    ,
-    "reference": [
-      {
-        "rfp_id": 4,
-        "title": "2022년 개방형 한국어 통합 사전 시스템 클라우드 전환",
-        "end_date": "계약 후~160일",
-        "manager": "박시현",
-        "keyword": [
-            "클라우드 전환",
-            "클라우드",
-            "개선"
-        ],
-        "similarity": 80.0
-    },
-        {
-          "rfp_id": 3,
-          "title": "24년 사이버보안 취약점 진단사업",
-          "end_date": "계약일로부터 2024년 12월 20일까지",
-          "manager": "백승현",
-          "keyword": [
-              "프로젝트 관리",
-              "보안"
-          ],
-          "similarity": 50.0
-
-        },
-
-      {
-        "rfp_id": 9,
-        "title": "KTOA 인터넷 트래픽 정산 시스템 H/W구축",
-        "end_date": "계약일로부터 6개월",
-        "manager": "고서연",
-        "keyword": [
-            "네트워크",
-            "연동"
-        ],
-        "similarity": 40.0
-    },
-    {
-      "rfp_id": 10,
-      "title": "연구용 서버 취약점 보안진단 솔루션 구매",
-      "end_date": "계약 체결일로부터 3개월이내",
-      "manager": "김병권",
-      "keyword": [
-          "솔루션",
-          "시스템"
-      ],
-      "similarity": 30.0
-  }
-
-    ],
-    "tasks": {
-        "priority": [
-            {
-                "order": 15,
-                "title": "priority"
-            },
-            {
-                "order": 6,
-                "title": "priority"
-            }
-        ],
-        "competivity": [
-            {
-                "order": 246,
-                "title": "competivity"
-            },
-            {
-                "order": 918,
-                "title": "competivity"
-            },
-            {
-                "order": 784,
-                "title": "competivity"
-            },
-            {
-                "order": 465,
-                "title": "competivity"
-            }
-        ],
-        "workforce": [
-            {
-                "count": 734,
-                "category": "workforce"
-            },
-            {
-                "count": 595,
-                "category": "workforce"
-            },
-            {
-                "count": 973,
-                "category": "workforce"
-            }
-        ]
-    }
-});
-
+  const [rfpData, setRfpData] = useState(rfpDataAll);
   
-  const [reference, setReference] = useState([
-    {
-      title: "클라우드 인프라 구축 사업 계획서",
-      end_date: "2022.08.29",
-      manager: "이수민",
-      index :"1",
-      link : "http://localhost:3030/rfp/1"
-    },
-    {
-      title: "하나은행 RFP 사업 요약서",
-      end_date: "2022.09.15",
-      manager: "이지원",
-      index :"2",
-      link : "http://localhost:3030/rfp/2"
-    }
-  ]);
+  const [reference, setReference] = useState(referenceData);
 
 
   const props = {
@@ -330,53 +192,7 @@ export default function AppView() {
         </Grid>
        
 
-
-        {/* <Grid xs={12} md={6} lg={4}>
-          <AppTrafficBySite
-            title="Traffic by Site"
-            list={[
-              {
-                name: 'FaceBook',
-                value: 323234,
-                icon: <Iconify icon="eva:facebook-fill" color="#1877F2" width={32} />,
-              },
-              {
-                name: 'Google',
-                value: 341212,
-                icon: <Iconify icon="eva:google-fill" color="#DF3E30" width={32} />,
-              },
-              {
-                name: 'Linkedin',
-                value: 411213,
-                icon: <Iconify icon="eva:linkedin-fill" color="#006097" width={32} />,
-              },
-              {
-                name: 'Twitter',
-                value: 443232,
-                icon: <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={32} />,
-              },
-            ]}
-          />
-            </Grid> */}
-
           </Grid>
-          {/* ) : (
-        <Grid container spacing={3} style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-          <Grid xs={12} sm={6} md={6}>
-            <Dragger {...props}>
-              <p className="ant-upload-drag-icon">
-                <InboxOutlined />
-              </p>
-              <p className="ant-upload-text">Click or drag file to this area to upload</p>
-              <p className="ant-upload-hint">
-                Support for a single or bulk upload. Strictly prohibited from uploading company data or other banned
-                files.
-              </p>
-            </Dragger>
-            <button type="button" onClick={handleRef_analysis}>분석하기</button>
-          </Grid>
-        </Grid>
-      )} */}
     </Container>
   );
 }
