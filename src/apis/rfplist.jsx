@@ -10,12 +10,12 @@ export const ref_list = async () => {// rfp 조회
     }
 }
 
-export const ref_reference = async () => {// rfp 조회
+export const ref_reference = async (id) => {// rfp 조회
   try {
-      const response = api.get(`/api/v1/rfp/reference`);
+      const response = api.get(`/api/v1/rfp/reference/${id}`);
       return response;
   } catch (error) {
-      console.error("getDiagramData 오류:", error);
+      console.error("ref_refence 오류:", error);
       throw error;
   }
 }
@@ -25,7 +25,7 @@ export const ref_update_progress = async (rfp_id) => { // rfp 진행상황 삭�
     const response = api.get(`/api/v1/rfp/update/progress/${rfp_id}`);
     return response;
     } catch (error) {
-        console.error("getDiagramData 오류:", error);
+        console.error("progress update 오류:", error);
         throw error;
     }
 }
@@ -35,7 +35,7 @@ export const ref_delete_progress = async (rfp_id) => { // rfp 진행상황 삭�
     const response = api.get(`/api/v1/rfp/delete/${rfp_id}`, );
     return response;
     } catch (error) {
-        console.error("getDiagramData 오류:", error);
+        console.error("progress delete 오류:", error);
         throw error;
     }
 }

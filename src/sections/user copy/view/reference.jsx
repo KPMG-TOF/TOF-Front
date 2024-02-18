@@ -1,13 +1,13 @@
 import { ref_reference } from "src/apis/rfplist";
 
-export const rfpReference = async () => {
+export const rfpReference = async (id) => {
     try {
 
       // const res = await ref_list();
       // if (res.data.result === "success") {
       //   const rfpdumpData =res.data.rfp_list;
 
-      const res = await ref_reference();
+      const res = await ref_reference(id);
       if (res.data.result === "success") {
         const rfpdumpData =res.data.rfp_list;
       

@@ -14,19 +14,9 @@ const navConfig = [
     path: '/',
     icon: icon('ic_analytics'),
   },
-  // {
-  //   title: 'RFP DashBoard',
-  //   path: '/rfp',
-  //   icon: icon('ic_analytics'),
-  // },
-  // {
-  //   title: 'Document',
-  //   path: '/blog',
-  //   icon: icon('ic_cart'),
-  // },
   {
     title: 'Document List',
-    path: '/user',
+    path: '/documents',
     icon: icon('ic_blog'),
   }
 ];

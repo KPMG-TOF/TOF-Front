@@ -90,7 +90,10 @@ export default function AppView() {
 
   useEffect(() => {
     const initFetch = async () => {
-      const rfpRef = await rfpReference();
+      const urlParts = window.location.pathname.split('/'); // URL 경로를 '/' 기준으로 분리
+      const id = urlParts[urlParts.length - 1]; // 마지막 부분이 '1'이 됩니다.
+      
+      const rfpRef = await rfpReference(id);
       setRfpData(rfpRef);
     };
   
