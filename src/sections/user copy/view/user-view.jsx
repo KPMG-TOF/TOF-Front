@@ -129,17 +129,14 @@ export default function UserPage() {
   const fetchrfpdump = async () => {
     try {
 
-      // const res = await ref_list();
-      // if (res.data.result === "success") {
-      //   const rfpdumpData =res.data.rfp_list;
 
       const res = await ref_list();
       if (res.data.result === "success") {
         const rfpdumpData =res.data.rfp_list;
       
       // const rfpdumpData = [
-      //   { id: '1', name: 'RFP title1', upload_date: '2024.04.02', progress: true},
-      //   { id: '2', name: 'RFP title2', upload_date: '2024.04.08', progress: true},
+      //   { id: '1', file: 'RFP title1', upload_date: '2024.04.02', progress: true},
+      //   { id: '2', file: 'RFP title2', upload_date: '2024.04.08', progress: true},
       //   // 여기에 더 많은 더미 데이터 객체 추가
       //       ];
 
@@ -148,7 +145,7 @@ export default function UserPage() {
         name: rfp.file, 
         date: rfp.upload_date,
         status: rfp.progress,
-        link: `http://localhost:3030/rfp`
+        link: `http://localhost:3030/rfp/${rfp.id}`
       }));
 
       return rfpdump;
