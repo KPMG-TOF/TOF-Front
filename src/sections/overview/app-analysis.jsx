@@ -12,10 +12,23 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 // AppAnalysis.js
-
-import { priorityData, competitivenessData, workforceData } from '/src/data/reference'; // Adjust the path accordingly
+import { rfpReference } from 'src/sections/user copy/view/reference';
+import React, {useState,useEffect} from 'react';
 
 export default function AppAnalysis({ title, subheader, list, ...other }) {
+
+  const [reference, setReference] = useState([]);
+  useEffect(() => {
+    const initFetch = async () => {
+      const rfpRef = await rfpReference();
+      setReference(rfpRef);
+    };
+  
+    initFetch();
+  }, []);
+
+
+  
   return (
     <Card style={{ padding: '20px' }} {...other}>
       <Box marginBottom={2}>
@@ -55,7 +68,7 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {priorityData.map((item) => (
+              {reference.map((item) => (
                 <TableRow key={item.no}>
                   <TableCell align='center'>{item.no}</TableCell>
                   <TableCell align='center'>{item.title}</TableCell>
@@ -98,7 +111,7 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {competitivenessData.map((item) => (
+              {reference.map((item) => (
                 <TableRow key={item.no}>
                   <TableCell align='center'>{item.no}</TableCell>
                   <TableCell align='center'>{item.title}</TableCell>
@@ -141,7 +154,7 @@ export default function AppAnalysis({ title, subheader, list, ...other }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {workforceData.map((item) => (
+              {reference.map((item) => (
                 <TableRow key={item.no}>
                   <TableCell align='center'>{item.no}</TableCell>
                   <TableCell align='center'>{item.title}</TableCell>

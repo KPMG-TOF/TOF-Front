@@ -9,6 +9,16 @@ export const ref_list = async () => {// rfp 조회
         throw error;
     }
 }
+
+export const ref_reference = async () => {// rfp 조회
+  try {
+      const response = api.get(`/api/v1/rfp/reference`);
+      return response;
+  } catch (error) {
+      console.error("getDiagramData 오류:", error);
+      throw error;
+  }
+}
     
 export const ref_update_progress = async (rfp_id) => { // rfp 진행상황 삭제
     try {

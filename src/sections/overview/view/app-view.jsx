@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 
 // import Iconify from 'src/components/iconify';
 
-
+import { rfpReference } from 'src/sections/user copy/view/reference';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -23,7 +23,8 @@ import AppOrderTimeline from '../app-order-timeline';
 import AppWidgetSummary from '../app-widget-summary';
 import AppAnalysis from '../app-analysis';
 import {AppNewsUpdate, AppNewsUpdate2} from '../app-news-update';
-import {referenceData, rfpDataAll} from '/src/data/reference';
+
+
 
 
 // import { Content } from 'antd/es/layout/layout'; 
@@ -31,6 +32,7 @@ import {referenceData, rfpDataAll} from '/src/data/reference';
 
 
 const { Dragger } = Upload;
+
 
 // ----------------------------------------------------------------------
 
@@ -42,9 +44,10 @@ export default function AppView() {
   const [manager, setManager] = useState('');
   const [rfindex, rfsetIndex] = useState(4); // Initialize index state with 1
 
-  const [rfpData, setRfpData] = useState(rfpDataAll);
+  const [rfpData, setRfpData] = useState('');
   
-  const [reference, setReference] = useState(referenceData);
+  const [reference, setReference] = useState('');
+  
 
 
   const props = {
@@ -85,6 +88,15 @@ export default function AppView() {
     }
   };
 
+  useEffect(() => {
+    const initFetch = async () => {
+      const rfpRef = await rfpReference();
+      setRfpData(rfpRef);
+    };
+  
+    initFetch();
+  }, []);
+
 
   const [openPopup, setOpenPopup] = useState(false);
   const handlePopup = () => {
@@ -100,71 +112,86 @@ export default function AppView() {
         TOF DashBoard
       </Typography>
 
-      
-
-      {/* {rfpData ? ( */}
+    
       <Grid container spacing={3}>
+      <Grid xs={12} sm={6} md={3}>
+        {rfpData && rfpData.info ? (
+          <AppWidgetSummary
+            subject="company"
+            requirement={rfpData.info.company}
+            color="success"
+            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+          />
+        ) : (
+          <div>Loading</div>
+        )}
+      </Grid>
         <Grid xs={12} sm={6} md={3}>
-    
+          {rfpData && rfpData.info ? (
             <AppWidgetSummary
-              subject="company"
-              requirement={rfpData.info.company}
-              color="success"
-              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+              subject="cost"
+              requirement={rfpData.info.cost}
+              color="info"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
             />
-    
+          ) : (
+            <div>Loading</div>
+          )}
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
-          <AppWidgetSummary
-            subject="cost"
-            requirement={rfpData.info.cost}
-            color="info"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
-          />
+          {rfpData && rfpData.info? (
+            <AppWidgetSummary
+              subject="title"
+              requirement={rfpData.info.title}
+              color="warning"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+            />
+          ) : (
+            <div>Loading</div>
+          )}
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
-          <AppWidgetSummary
-            subject="title"
-            requirement={rfpData.info.title}
-            color="warning"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
-          />
-        </Grid>
-
-        <Grid xs={12} sm={6} md={3}>
-          <AppWidgetSummary
-            subject="start_date"
-            requirement={rfpData.summary.start_date}
-            color="error"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
-          />
+          {rfpData && rfpData.info ? (
+            <AppWidgetSummary
+              subject="start_date"
+              requirement={rfpData.summary.start_date}
+              color="error"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
+            />
+          ) : (
+            <div>Loading</div>
+          )}
         </Grid>
 
         <Grid xs={12} md={4} lg={4}>
-          <AppOrderTimeline
-            title="RFP Summary"
-            list={rfpData.summary}
-            list2 = {rfpData.info}
-          />
+          {rfpData && rfpData.info ? (
+            <AppOrderTimeline
+              title="RFP Summary"
+              list={rfpData.summary}
+              list2={rfpData.info}
+            />
+          ) : (
+            <div>Loading</div>
+          )}
         </Grid>
 
         <Grid xs={12} md={8} lg={8}>
-          <AppNewsUpdate
-            title="Similarity"
-            list={rfpData.reference}
-          />
+          {rfpData && rfpData.info ? (
+            <AppNewsUpdate title="Similarity" list={rfpData.reference} />
+          ) : (
+            <div>Loading</div>
+          )}
         </Grid>
-
 
         <Grid xs={12} md={6} lg={12}>
-          <AppAnalysis 
-            title="Analysis" 
-            list={reference}
-          />
-        </Grid>
-
+          {rfpData && rfpData.info ? (
+            <AppAnalysis title="Analysis" list={reference} />
+          ) : (
+            <div>Loading</div>
+          )}
+        </Grid> 
 
         <Grid item xs={12}>
           <Grid container justifyContent="flex-end" alignItems="flex-end" mb={1}>
@@ -179,7 +206,11 @@ export default function AppView() {
           </Grid>
 
           <Grid>
-            <AppNewsUpdate2 title="산출물" list={reference} />
+          {Array.isArray(reference) ? (
+              <AppNewsUpdate2 title="Output" list={reference} />
+            ) : (
+              <div>Loading or provide a default value</div>
+            )}
           </Grid>
 
           <Dialog open={openPopup} onClose={handlePopup} maxWidth="md">
